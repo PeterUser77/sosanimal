@@ -12,34 +12,35 @@ import javax.persistence.Table;
 
 @Entity
 @Getter
-@Table(schema = "MYDB", name = "ADRESS")
-public class Adress {
+@Table(schema = "SOSANIMAL", name = "ADDRESS")
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ADRESS")
+    @Column(name = "ID_ADDRESS")
     private Integer cdAdress;
 
     @Setter
-    @Column(name = "CEP")
-    private Integer cep;
-
-    @Setter
-    @Column(name = "STREET")
-    private String street;
-
-    @Column(name = "NUMBER")
-    private Integer number;
+    @Column(name = "PUBLIC_PLACE")
+    private String publicPlace;
 
     @Column(name = "COMPLEMENT")
     private String complement;
+
+    @Setter
+    @Column(name = "NEIGHBORHOOD")
+    private String neighborhood;
 
     @Setter
     @Column(name = "CITY")
     private String city;
 
     @Setter
-    @Column(name = "DISTRICT")
+    @Column(name = "STATE")
     private String district;
+
+    @Setter
+    @Column(name = "CEP")
+    private Integer cep;
 
 }

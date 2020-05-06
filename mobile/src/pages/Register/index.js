@@ -6,7 +6,6 @@ import {
     Text,
     TouchableOpacity,
     ScrollView,
-    ImageBackground,
 } from 'react-native';
 import Input from '../../components/Form/Input';
 
@@ -23,20 +22,15 @@ export default function Register() {
     const navigation = useNavigation();
     const formRegister = useRef(null);
 
-    function navigateToRegister() {
-        navigation.navigate('RegisterOng');
-    }
     function handleSubmit(data) {
         console.log(data);
     }
 
     return (
 
-        <View style={styles.container}>
-            <ImageBackground source={require('../../assets/background-register.jpg')} style={global.backgroundImage}>
+        <View style={global.containerStatusBar}>
 
                 <ScrollView showsVerticalScrollIndicator={false}>
-
                     <View style={global.container}>
                         <Text style={styles.title}>Cadastrar Usuário</Text>
                     </View>
@@ -88,9 +82,9 @@ export default function Register() {
                             <Text style={styles.subtitle}>Endereço</Text>
                         </View>
 
-                        <Scope>
+                        <Scope path="address">
                             <View style={global.container}>
-                                <View style={styles.containerCepButton}>
+                                <View style={global.containerSpaceBetween}>
                                     <Input
                                         style={styles.inputCep}
                                         name="cep"
@@ -102,11 +96,11 @@ export default function Register() {
                                         style={styles.checkButton}
                                         onPress={() => { }}
                                     >
-                                        <Text style={styles.botaoText}>Verificar</Text>
+                                        <Text style={global.textButton}>Verificar</Text>
                                     </TouchableOpacity>
                                 </View>
 
-                                <View style={styles.containerCityUf}>
+                                <View style={global.containerSpaceBetween}>
                                     <Input
                                         style={styles.inputCity}
                                         name="city"
@@ -131,7 +125,7 @@ export default function Register() {
                                     editable={false}
                                 />
 
-                                <View style={styles.containerComplementNumber}>
+                                <View style={global.containerSpaceBetween}>
                                     <Input
                                         style={styles.inputComplement}
                                         name="complement"
@@ -150,15 +144,14 @@ export default function Register() {
                         </Scope>
 
                         <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => { navigateToRegister() }}
+                            style={global.button}
+                            onPress={() => { formRegister.current.submitForm() }}
                         >
-                            <Text style={styles.botaoText}>Cadastrar</Text>
+                            <Text style={global.textButton}>Cadastrar</Text>
                         </TouchableOpacity>
 
                     </Form>
                 </ScrollView>
-            </ImageBackground>
         </View>
     );
 }

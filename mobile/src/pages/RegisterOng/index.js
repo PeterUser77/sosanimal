@@ -1,105 +1,157 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
+
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    ScrollView,
+} from 'react-native';
+import Input from '../../components/Form/Input';
+
+import global from '../../global';
+import styles from './styles';
+
 import { Form } from '@unform/mobile';
 import { Scope } from '@unform/core';
-import styles from './styles';
+
 
 
 export default function Register() {
 
+    const navigation = useNavigation();
+    const formRegisterOng = useRef(null);
+
+    function handleSubmit(data) {
+        console.log(data);
+    }
 
     return (
 
-        <View style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Text style={styles.title}>Cadastrar ONG</Text>
+        <View style={global.containerStatusBar}>
 
-                <Form>
-                    <TextInput style={styles.input}
-                        placeholder="Nome"
-                        autoCorrect={false}
-                    />
-                    <TextInput style={styles.input}
-                        placeholder="Nome Fantasia"
-                        autoCorrect={false}
-                    />
-                    <TextInput style={styles.input}
-                        placeholder="Email"
-                        autoCorrect={false}
-                    />
-                    <TextInput style={styles.input}
-                        placeholder="Telefone 1"
-                        autoCorrect={false}
-                        keyboardType="number-pad"
-                    />
-                    <TextInput style={styles.input}
-                        placeholder="Telefone 2"
-                        autoCorrect={false}
-                        keyboardType="number-pad"
-                    />
-                    <TextInput style={styles.input}
-                        placeholder="CNPJ"
-                        autoCorrect={false}
-                        keyboardType="number-pad"
-                    />
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={global.container}>
+                        <Text style={styles.title}>Cadastrar ONG</Text>
+                    </View>
 
-                    <View>
-                        <Text style={styles.subtitle}>Endereço</Text>
-                        <Scope path="address">
-                            <View style={styles.formEndereco}>
-                                <TextInput style={styles.inputCep}
-                                    placeholder="CEP"
-                                    autoCorrect={false}
-                                    keyboardType="number-pad"
-                                />
-                                <TouchableOpacity
-                                    style={styles.botaoVerificar}
-                                    onPress={() => { }}
-                                >
-                                    <Text style={styles.botaoText}>Verificar</Text>
-                                </TouchableOpacity>
-                            </View>
-
-                            <View style={styles.formEndereco}>
-                                <TextInput style={styles.inputCidade}
-                                    editable={false}
-                                    placeholder="Cidade"
-                                    autoCorrect={false}
-                                />
-                                <TextInput style={styles.inputUf}
-                                    editable={false}
-                                    placeholder="UF"
-                                    autoCorrect={false}
-                                />
-                            </View>
-
-                            <TextInput style={styles.inputBairro}
-                                editable={false}
-                                placeholder="Bairro"
+                    <Form ref={formRegisterOng} onSubmit={handleSubmit}>
+                        <View style={global.container}>
+                            <Input
+                                style={global.input}
+                                name="name"
+                                placeholder="Nome"
                                 autoCorrect={false}
                             />
+                            <Input
+                                style={global.input}
+                                name="fantasyName"
+                                placeholder="Nome Fantasia"
+                                autoCorrect={false}
+                            />
+                            <Input
+                                style={global.input}
+                                name="email"
+                                placeholder="Email"
+                                autoCorrect={false}
+                            />
+                            <Input
+                                style={global.input}
+                                name="phone"
+                                placeholder="Telefone 1"
+                                keyboardType="number-pad"
+                                autoCorrect={false}
+                            />
+                            <Input
+                                style={global.input}
+                                name="otherPhone"
+                                placeholder="Telefone 2"
+                                keyboardType="number-pad"
+                                autoCorrect={false}
+                            />
+                            <Input
+                                style={global.input}
+                                name="document"
+                                placeholder="CPNPJ"
+                                keyboardType="number-pad"
+                                autoCorrect={false}
+                            />
+                        </View>
 
-                            <View style={styles.formEndereco}>
-                                <TextInput style={styles.inputComplemento}
-                                    placeholder="Complemento"
+                        <View style={global.container}>
+                            <Text style={styles.subtitle}>Endereço</Text>
+                        </View>
+
+                        <Scope path="address">
+                            <View style={global.container}>
+                                <View style={global.containerSpaceBetween}>
+                                    <Input
+                                        style={styles.inputCep}
+                                        name="cep"
+                                        placeholder="CEP"
+                                        keyboardType="number-pad"
+                                        autoCorrect={false}
+                                    />
+                                    <TouchableOpacity
+                                        style={styles.checkButton}
+                                        onPress={() => { }}
+                                    >
+                                        <Text style={global.textButton}>Verificar</Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={global.containerSpaceBetween}>
+                                    <Input
+                                        style={styles.inputCity}
+                                        name="city"
+                                        placeholder="Cidade"
+                                        autoCorrect={false}
+                                        editable={false}
+                                    />
+                                    <Input
+                                        style={styles.inputUf}
+                                        name="uf"
+                                        placeholder="UF"
+                                        autoCorrect={false}
+                                        editable={false}
+                                    />
+                                </View>
+
+                                <Input
+                                    style={styles.inputNeighborhood}
+                                    name="neighborhood"
+                                    placeholder="Bairro"
                                     autoCorrect={false}
+                                    editable={false}
                                 />
-                                <TextInput style={styles.inputNumero}
-                                    placeholder="Número"
-                                    autoCorrect={false}
-                                    keyboardType="number-pad"
-                                />
+
+                                <View style={global.containerSpaceBetween}>
+                                    <Input
+                                        style={styles.inputComplement}
+                                        name="complement"
+                                        placeholder="Complemento"
+                                        autoCorrect={false}
+                                    />
+                                    <Input
+                                        style={styles.inputNumber}
+                                        name="number"
+                                        keyboardType="number-pad"
+                                        placeholder="Número"
+                                        autoCorrect={false}
+                                    />
+                                </View>
                             </View>
                         </Scope>
+
                         <TouchableOpacity
-                            style={styles.botao}
-                            onPress={() => { }}
+                            style={global.button}
+                            onPress={() => { formRegisterOng.current.submitForm() }}
                         >
-                            <Text style={styles.botaoText}>Cadastrar</Text>
+                            <Text style={global.textButton}>Cadastrar</Text>
                         </TouchableOpacity>
-                    </View>
-                </Form>
-            </ScrollView>
+
+                    </Form>
+                </ScrollView>
         </View>
     );
 }

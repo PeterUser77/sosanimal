@@ -22,6 +22,10 @@ export default function Init() {
         navigation.navigate('Register');
     }
 
+    function navigateToRegisterOng() {
+        navigation.navigate('RegisterOng');
+    }
+
     return (
 
         <View style={global.container}>
@@ -45,6 +49,12 @@ export default function Init() {
                         style={global.button}
                         onPress={() => navigateToRegister()}>
                         <Text style={global.textButton}> Registrar </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={global.button}
+                        onPress={() => navigateToRegisterOng()}>
+                        <Text style={global.textButton}> Registrar ONG</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

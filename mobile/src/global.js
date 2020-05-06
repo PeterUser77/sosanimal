@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
 
 export default StyleSheet.create({
 
@@ -7,6 +8,27 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
+    },
+
+    // Container para centralizar a Logo
+    containerLogo: {
+        alignItems: "center",
+    },
+
+    // Container com componentes lado a lado
+    containerSpaceBetween: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+
+    // Container com background cinza e margem no statusbar
+    containerStatusBar: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: '#E5ECE8',
     },
 
     // Imagem de background para cada tela
@@ -23,16 +45,13 @@ export default StyleSheet.create({
         width: 250,
         height: 250,
     },
-    // Container para centralizar a Logo
-    containerLogo: {
-        alignItems: "center",
-    },
+
 
     // Input padrão grande
     input: {
         marginTop: 5,
         padding: 10,
-        width: '90%',
+        width: 330,
         height: 50,
         fontSize: 16,
         borderRadius: 10,
@@ -58,5 +77,5 @@ export default StyleSheet.create({
         color: '#FFFF',
     },
 
-    
+
 });

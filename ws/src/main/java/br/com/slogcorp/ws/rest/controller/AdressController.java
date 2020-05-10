@@ -1,8 +1,8 @@
 package br.com.slogcorp.ws.rest.controller;
 
-import br.com.slogcorp.ws.rest.model.Adress;
+import br.com.slogcorp.ws.rest.model.Address;
 import org.springframework.http.ResponseEntity;
 
 public interface AdressController {
-    ResponseEntity<Adress> findByCep(String cep);
+    ResponseEntity<Address> findByCep(String cep);
 }

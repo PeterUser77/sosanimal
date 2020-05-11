@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
-
+import global from '../../global';
 
 
 export default function Case() {
@@ -25,7 +25,7 @@ export default function Case() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity
-                    style={styles.botao}
+                    style={global.botaoHome}
                     onPress={() => navigateToAuth()}>
 
                     <Text style={styles.botaoText}> Voltar </Text>

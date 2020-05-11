@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
+import global from '../../global';
 
 
 export default function Home() {
@@ -27,20 +28,20 @@ export default function Home() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity
-                    style={styles.botao}
+                    style={global.botaoHome}
                     onPress={() => navigateToHome()}>
 
                     <Text style={styles.botaoText}> ONG </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.botao}
+                    style={global.botaoHome}
                     onPress={() => navigateToRegister()}>
                     <Text style={styles.botaoText}> PERFIL </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.botao}
+                    style={global.botaoHome}
                     onPress={() => navigateToAuth()}>
                     <Text style={styles.botaoText}> LOGOUT </Text>
                 </TouchableOpacity>

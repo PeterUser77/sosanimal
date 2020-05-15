@@ -28,50 +28,39 @@ export default function Home() {
             <View style={styles.header}>
                 <TouchableOpacity
                     style={global.botaoHome}
-                    onPress={() => navigateToHome()}>
+                    onPress={() => navigateToCase()}>
 
-                    <Text style={styles.botaoText}> ONG </Text>
+                    <Text style={styles.botaoText}> Casos </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.botaoHome}
-                    onPress={() => navigateToRegister()}>
+                    onPress={() => navigateToProfile()}>
                     <Text style={styles.botaoText}> Perfil </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.botaoHome}
-                    onPress={() => navigateToRegister()}>
-                    <Text style={styles.botaoText}> Sair </Text>
+                    onPress={() => navigateToInit()}>
+                    <Text style={styles.botaoText}> Voltar </Text>
                 </TouchableOpacity>
             </View>
     
-            <View style={styles.totalizaCasos}>
-                <Text style={styles.totalizaCasosText}> Total de Casos: 0 </Text>
-            </View>
-         
-           <View style = {styles.incidentsList}>
-            <FlatList 
-            data= {[1, 2, 3]}
-            renderItem = { () => ( 
-            <View style={styles.incident}>
-                <Text style={styles.incidentProperty}>ONG:</Text>
-                <Text style={styles.incidentValue}>NomeDaONG</Text>
-
-                <Text style={styles.incidentProperty}>CASO:</Text>
-                <Text style={styles.incidentValue}>Descricao do Caso</Text>
-
-                <Text style={styles.incidentProperty}>VALOR:</Text>
-                <Text style={styles.incidentValue}>R$ 100,00</Text>
-
-                <TouchableOpacity style={styles.detailsButton} onPress={navigateToDetail}>
-                    <Text style={styles.detailButtonText}>+ Detalhes</Text>
-                </TouchableOpacity>
-            </View>
             
-             )}
-             />
-             </View>
+        <View style = {styles.OngContainer}>
+
+            <View style={styles.totalizaCasos}>
+                <Text style={styles.totalizaCasosText}> Seja bem-vindo a Ong Test!</Text>
+            </View>
+
+           <View style={styles.totalizaCasos}>
+                <Text style={styles.totalizaCasosText}> Existem 0 casos ativos! </Text>
+            </View>
+
+        </View>
+
+            
+         
            
             
 

@@ -9,6 +9,7 @@ export default StyleSheet.create({
     
     container: {
         flex: 1, 
+        paddingTop: +20,
     },
     header:{
         
@@ -31,14 +32,15 @@ export default StyleSheet.create({
         color: '#ffff',
     },
 
+    OngContainer :{
+        paddingTop: 200, 
+        justifyContent: "center"
+    }, 
+    
     totalizaCasos:{
         padding: 10,
-        width:'100%',
         height: 50,
         alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: "#C9C9C3",
     },
 
     totalizaCasosText:{
@@ -46,37 +48,8 @@ export default StyleSheet.create({
         fontWeight: 'bold',
        
     }, 
-    incidentsList:{
-        flex: 1, 
-    }, 
 
-    incident:{
-        padding: 24,
-        borderRadius: 10,
-        backgroundColor: '#FFF',
-        marginBottom: 10,
-    }, 
-
-    incidentProperty:{
-        fontSize:14, 
-        color: '#FF8C00',
-        fontWeight: 'bold',
-        
-    }, 
-    incidentValue: {
-        marginTop: 8,
-        fontSize: 15,
-        marginBottom: 10,
-    },
-    detailsButton: {
-        alignItems: 'flex-end',
-    },
-    detailButtonText:{
-        color: '#e02041',
-        fontSize: 15,
-        fontWeight: 'bold',
-        
-    }
     
+
 });
 

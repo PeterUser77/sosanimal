@@ -9,6 +9,10 @@ import RegisterOng from './pages/RegisterOng';
 import Home from './pages/Home';
 import ONG from './pages/ONG';
 import Case from './pages/Case';
+import ListarONG from './pages/ListarONG';
+import HomeONG from './pages/HomeONG';
+
+HomeONG
 const AppStack = createStackNavigator();
 export default function Routes() {
     return (
@@ -22,6 +26,8 @@ export default function Routes() {
                 <AppStack.Screen name="Home" component={Home} />
                 <AppStack.Screen name="ONG" component={ONG} />
                 <AppStack.Screen name="Case" component={Case} />
+                <AppStack.Screen name="ListarONG" component={ListarONG} />
+                <AppStack.Screen name="HomeONG" component={HomeONG} />
             </AppStack.Navigator>
 
         </NavigationContainer>

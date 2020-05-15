@@ -26,7 +26,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     botaoText: {
-        fontSize: 15,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#ffff',
     },
@@ -51,7 +51,7 @@ export default StyleSheet.create({
     }, 
 
     incident:{
-        padding: 10,
+        padding: 24,
         borderRadius: 10,
         backgroundColor: '#FFF',
         marginBottom: 10,
@@ -73,25 +73,10 @@ export default StyleSheet.create({
     },
     detailButtonText:{
         color: '#e02041',
-        fontSize: 10,
+        fontSize: 15,
         fontWeight: 'bold',
         
-    },
-    incident2: { 
-        flex:1,
-         flexDirection:'row', 
-        justifyContent: 'space-between',
-     },
-     botaoEnd: {
-       width:'25%',
-        height: 30,
-        backgroundColor: '#fc9335',
-        marginTop: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 5,
     }
-
     
 });
 

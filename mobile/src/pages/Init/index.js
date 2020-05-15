@@ -30,14 +30,25 @@ export default function Init() {
         navigation.navigate('Home');
     }
 
+    function navigateToHomeONG() {
+        navigation.navigate('HomeONG');
+    }
+
     function navigateToONG() {
         navigation.navigate('ONG');
+    }
+
+    function navigateToListaONG() {
+        navigation.navigate('ListarONG');
     }
 
     function navigateToCase() {
         navigation.navigate('Case');
     }
    
+  
+  
+    
     return (
 
         <View style={global.container}>
@@ -77,8 +88,21 @@ export default function Init() {
 
                     <TouchableOpacity
                         style={global.button}
+                        onPress={() => navigateToHomeONG()}>
+                        <Text style={global.textButton}> Home ONG </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={global.button}
                         onPress={() => navigateToONG()}>
-                        <Text style={global.textButton}> Home ONG</Text>
+                        <Text style={global.textButton}> ONG</Text>
+                    </TouchableOpacity>
+
+                    
+                    <TouchableOpacity
+                        style={global.button}
+                        onPress={() => navigateToListaONG()}>
+                        <Text style={global.textButton}> Listar ONG </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -86,6 +110,8 @@ export default function Init() {
                         onPress={() => navigateToCase()}>
                         <Text style={global.textButton}> Cases </Text>
                     </TouchableOpacity>
+
+                
                 </View>
             </ImageBackground>
         </View>

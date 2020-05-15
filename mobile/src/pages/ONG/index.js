@@ -10,17 +10,16 @@ import {
     TouchableOpacity
 } from 'react-native'
 import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
 import global from '../../global';
+
+
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Home() {
     const navigation = useNavigation();
 
-    function navigateToAuth() {
-        navigation.navigate('Auth');
-    }
-    function navigateToDetail() {
+    function navigateToDetail(){
         navigation.navigate('Detail');
     }
 
@@ -31,28 +30,26 @@ export default function Home() {
                     style={global.botaoHome}
                     onPress={() => navigateToHome()}>
 
-                    <Text style={styles.botaoText}> ONG </Text>
+                    <Text style={styles.botaoText}> Cadastrar </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToRegister()}>
-                    <Text style={styles.botaoText}> PERFIL </Text>
+                    <Text style={styles.botaoText}> Voltar </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={global.botaoHome}
-                    onPress={() => navigateToAuth()}>
-                    <Text style={styles.botaoText}> LOGOUT </Text>
-                </TouchableOpacity>
+        
             </View>
-
+    
             <View style={styles.totalizaCasos}>
                 <Text style={styles.totalizaCasosText}> Total de Casos: 0 </Text>
             </View>
-
-
-
+         
+           <View style = {styles.incidentsList}>
+            <FlatList 
+            data= {[1, 2]}
+            renderItem = { () => ( 
             <View style={styles.incident}>
                 <Text style={styles.incidentProperty}>ONG:</Text>
                 <Text style={styles.incidentValue}>NomeDaONG</Text>
@@ -63,12 +60,34 @@ export default function Home() {
                 <Text style={styles.incidentProperty}>VALOR:</Text>
                 <Text style={styles.incidentValue}>R$ 100,00</Text>
 
-                <TouchableOpacity style={styles.detailsButton} onPress={navigateToDetail}>
-                    <Text style={styles.detailButtonText}>+ Detalhes</Text>
-                </TouchableOpacity>
+                <View style={styles.incident2}>
+           
+           <TouchableOpacity
+               style={styles.botaoEnd}
+               onPress={() => navigateToAuth()}>
+               <Text style={styles.botaoText}> Concluir </Text>
+           </TouchableOpacity>
+           <TouchableOpacity
+               style={styles.botaoEnd}
+               onPress={() => navigateToAuth()}>
+               <Text style={styles.botaoText}> Editar </Text>
+           </TouchableOpacity>
+           <TouchableOpacity
+               style={styles.botaoEnd}
+               onPress={() => navigateToAuth()}>
+               <Text style={styles.botaoText}> Cancelar </Text>
+           </TouchableOpacity>
+       </View>
+       
             </View>
+            
+             )}
+             />
+             </View>
+           
+            
 
-        </View>
+        </View> 
     );
 
 }

@@ -58,14 +58,7 @@ export default function Register() {
                             <Input
                                 style={global.input}
                                 name="phone"
-                                placeholder="Telefone 1"
-                                keyboardType="number-pad"
-                                autoCorrect={false}
-                            />
-                            <Input
-                                style={global.input}
-                                name="otherPhone"
-                                placeholder="Telefone 2"
+                                placeholder="Telefone"
                                 keyboardType="number-pad"
                                 autoCorrect={false}
                             />

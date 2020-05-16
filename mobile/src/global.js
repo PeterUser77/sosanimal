@@ -56,7 +56,7 @@ export default StyleSheet.create({
         fontSize: 16,
         borderRadius: 10,
         fontWeight: 'bold',
-        backgroundColor: '#FFFF',
+        backgroundColor: '#FFFFFF',
     },
 
     // Button padrão grande, arredondado
@@ -70,12 +70,27 @@ export default StyleSheet.create({
         backgroundColor: '#FF8C00',
     },
 
+    buttonBirthDate: {
+        marginTop: 5,
+        padding: 10,
+        width: 330,
+        height: 50,
+        borderRadius: 10,
+        backgroundColor: '#FFFFFF',
+    },
+
     // Texto do Button
     textButton: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#FFFF',
+        color: '#FFFFFF',
     },
 
-
+    // Texto do Button Birth Date
+    textButtonBirthDate: {
+        marginTop: 5,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#C3C3C3',
+    },
 });

@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
+
 import { useNavigation } from '@react-navigation/native';
+import { Form } from '@unform/mobile';
+
 import {
   ImageBackground,
   Text,
@@ -7,9 +10,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Input from '../../components/Form/Input';
+import { crypto } from '../../secure/Crypto';
+
 import styles from './styles';
 import global from '../../global';
-import { Form } from '@unform/mobile';
 
 
 export default function Auth() {
@@ -17,16 +21,16 @@ export default function Auth() {
   const formAuth = useRef(null);
   const navigation = useNavigation();
 
-  function handleSubmit(data) {
-    console.log(data);
-    // { email: 'test@example.com', password: '123456' }
+  async function handleSubmit(data) {
+    const password = await crypto('text');
+    console.log(password);
   }
 
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../../assets/background-login.jpg')} style={global.backgroundImage}>
 
-      <View style={styles.containerForm}>
+        <View style={styles.containerForm}>
           <Form ref={formAuth} onSubmit={handleSubmit}>
             <Input
               placeholder="E-mail"
@@ -50,6 +54,7 @@ export default function Auth() {
             </TouchableOpacity>
           </Form>
         </View>
+
       </ImageBackground>
     </View>
   );

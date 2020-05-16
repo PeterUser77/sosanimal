@@ -11,6 +11,7 @@ export default StyleSheet.create({
         flex: 1, 
         backgroundColor: '#E5ECE8',        
     },
+    
     header:{
         
         alignItems: 'center',
@@ -35,11 +36,11 @@ export default StyleSheet.create({
     },
 
     title : {
-        marginTop: 20, 
-        padding: 15
-
+        marginTop: 5, 
+        padding: 10,
     },
-
+   
+    
     titletext: {
         fontSize: 20,  
         fontWeight: 'bold',
@@ -49,6 +50,8 @@ export default StyleSheet.create({
 
     description: {
         padding: 15,
+        flexDirection:'row',
+        borderRadius: 10,
     },
 
     descriptiontext: {
@@ -81,9 +84,23 @@ export default StyleSheet.create({
         color: '#FF8C00',
         fontSize: 15,
         fontWeight: 'bold',
-        
+    },
 
-    }
+    textareaContainer: {
+        height: 200,
+        padding: 5,
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+    },
+
+    textarea: {
+        
+        textAlignVertical: 'top',  // hack android
+        height: 200,
+        fontSize: 14,
+        color: '#333',
+        
+    },
     
 });
 

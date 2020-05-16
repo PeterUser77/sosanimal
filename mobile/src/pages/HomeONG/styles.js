@@ -27,7 +27,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     botaoText: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         color: '#ffff',
     },

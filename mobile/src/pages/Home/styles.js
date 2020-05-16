@@ -9,24 +9,27 @@ export default StyleSheet.create({
     
     container: {
         flex: 1, 
+            borderRadius:4,
     },
     header:{
-        
+        paddingTop:20,
+        borderRadius:10,
         alignItems: 'center',
-        backgroundColor: '#E5ECE8',
+        backgroundColor: '#FF8C00',
         flexDirection:'row',
         
     },
     botao: {
+        
         flex: 1,
         height: 50,
         backgroundColor: '#FF8C00',
-        marginTop: 20,
+        marginTop: 15,
         alignItems: 'center',
         justifyContent: 'center',
     },
     botaoText: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         color: '#ffff',
     },
@@ -37,7 +40,7 @@ export default StyleSheet.create({
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
+        borderWidth:0,
         borderColor: "#C9C9C3",
     },
 

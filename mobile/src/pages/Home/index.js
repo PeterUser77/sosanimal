@@ -22,17 +22,22 @@ export default function Home() {
     function navigateToDetail(){
         navigation.navigate('Detail');
     }
-
+    function navigateToAuth() {
+        navigation.navigate('Auth');
+    }
+    function navigateToHomeONG() {
+        navigation.navigate('HomeONG');
+    }
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity
                     style={global.botaoHome}
-                    onPress={() => navigateToHome()}>
+                    onPress={() => navigateToHomeONG()}>
 
                     <Text style={styles.botaoText}> ONG </Text>
                 </TouchableOpacity>
-
+               
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToRegister()}>
@@ -41,7 +46,7 @@ export default function Home() {
 
                 <TouchableOpacity
                     style={global.botaoHome}
-                    onPress={() => navigateToRegister()}>
+                    onPress={() => navigateToAuth()}>
                     <Text style={styles.botaoText}> Sair </Text>
                 </TouchableOpacity>
             </View>

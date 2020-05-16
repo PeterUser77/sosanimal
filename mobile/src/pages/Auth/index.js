@@ -16,6 +16,9 @@ export default function Auth() {
 
   const formAuth = useRef(null);
   const navigation = useNavigation();
+  function navigateToHome() {
+    navigation.navigate('Home');
+}
 
   function handleSubmit(data) {
     console.log(data);
@@ -45,9 +48,10 @@ export default function Auth() {
 
             <TouchableOpacity
               style={global.button}
-              onPress={() => { formAuth.current.submitForm() }}>
+              onPress={() => { formAuth.current.submitForm() ,  navigateToHome() }}>
               <Text style={global.textButton}> Entrar </Text>
-            </TouchableOpacity>
+           </TouchableOpacity>
+            
           </Form>
         </View>
       </ImageBackground>

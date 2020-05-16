@@ -19,16 +19,23 @@ import { useNavigation } from '@react-navigation/native';
 export default function Home() {
     const navigation = useNavigation();
 
-    function navigateToDetail(){
-        navigation.navigate('Detail');
+
+
+    function navigateToHome(){
+        navigation.navigate('Home');
     }
 
+    function navigateToONG(){
+        navigation.navigate('ONG');
+    }
+   
+   
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity
                     style={global.botaoHome}
-                    onPress={() => navigateToCase()}>
+                    onPress={() => navigateToONG()}>
 
                     <Text style={styles.botaoText}> Casos </Text>
                 </TouchableOpacity>
@@ -41,7 +48,7 @@ export default function Home() {
 
                 <TouchableOpacity
                     style={global.botaoHome}
-                    onPress={() => navigateToInit()}>
+                    onPress={() => navigateToHome()}>
                     <Text style={styles.botaoText}> Voltar </Text>
                 </TouchableOpacity>
             </View>

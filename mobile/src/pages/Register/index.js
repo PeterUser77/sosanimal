@@ -5,18 +5,20 @@ import {
     View,
     Text,
     TouchableOpacity,
-    ScrollView,
-    Button
+    ScrollView
 } from 'react-native';
 import Input from '../../components/Form/Input';
 import Crypto from '../../secure/Crypto';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import MyDatePicker from '../../components/Form/MyDatePicker';
+
 
 import global from '../../global';
 import styles from './styles';
 
 import { Form } from '@unform/mobile';
 import { Scope } from '@unform/core';
+
+import Api from '../../service/Api';
 
 
 
@@ -25,30 +27,17 @@ export default function Register() {
     const navigation = useNavigation();
     const formRegister = useRef(null);
 
-    // DateTimePicker
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
-
-    const onChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
-        setShow(Platform.OS === 'ios');
-        setDate(currentDate);
-    };
-
-    const showMode = currentMode => {
-        setShow(true);
-        setMode(currentMode);
-    };
-
-    const showDatepicker = () => {
-        showMode('date');
-    };
-
     async function handleSubmit(data) {
 
         console.log(data.password);
         const password = await Crypto(data.password);
+
+        //VALIDAÇÕES ----------
+
+        //ENVIAR BACKEND ------
+        const response = await api.post('incidents', {
+            params: {page}
+        });
 
         console.log({
             'firstName': data.firstNamem,
@@ -58,7 +47,7 @@ export default function Register() {
             'phone': data.phone,
             'document': data.document,
             'address': data.address,
-            'date': date
+            'date': data.birthDate
         });
     }
 
@@ -74,13 +63,14 @@ export default function Register() {
                 <Form ref={formRegister} onSubmit={handleSubmit}>
 
                     <View style={global.container}>
-
+                    
                         <Input
                             style={global.input}
                             name="firstName"
                             placeholder="Nome"
                             autoCorrect={false}
                         />
+
                         <Input
                             style={global.input}
                             name="lastName"
@@ -88,22 +78,10 @@ export default function Register() {
                             autoCorrect={false}
                         />
 
-                        <TouchableOpacity
-                            style={global.buttonBirthDate} onPress={showDatepicker}
-                        >
-                            <Text style={global.textButtonBirthDate}>Data de Nascimento</Text>
-                        </TouchableOpacity>
-
-                        {show && (
-                            <DateTimePicker
-                                testID="dateTimePicker"
-                                value={date}
-                                mode={mode}
-                                is24Hour={true}
-                                display="default"
-                                onChange={onChange}
-                            />
-                        )}
+                        <MyDatePicker
+                            name="birthDate"
+                            placeholder= "Data de Nascimento"
+                        />
 
                         <Input
                             style={global.input}

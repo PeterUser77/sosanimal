@@ -20,14 +20,17 @@ import React, {
         name: fieldName,
         ref: inputRef.current,
         path: 'value',
+
         clearValue(ref) {
           ref.value = '';
           ref.clear();
         },
+
         setValue(ref, value) {
           ref.setNativeProps({ text: value });
           inputRef.current.value = value;
         },
+        
         getValue(ref) {
           return ref.value;
         },

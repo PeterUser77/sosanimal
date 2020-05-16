@@ -70,6 +70,15 @@ export default StyleSheet.create({
         backgroundColor: '#FF8C00',
     },
 
+    buttonBirthDate: {
+        marginTop: 5,
+        padding: 10,
+        width: 330,
+        height: 50,
+        borderRadius: 10,
+        backgroundColor: '#FFFF',
+    },
+
     // Texto do Button
     textButton: {
         fontSize: 18,
@@ -77,5 +86,11 @@ export default StyleSheet.create({
         color: '#FFFF',
     },
 
-
+    // Texto do Button Birth Date
+    textButtonBirthDate: {
+        marginTop: 5,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#C3C3C3',
+    },
 });

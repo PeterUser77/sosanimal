@@ -117,7 +117,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
    
     },
-    
     header:{
        
         alignItems: 'center',

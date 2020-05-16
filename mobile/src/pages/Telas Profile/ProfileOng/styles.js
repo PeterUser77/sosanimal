@@ -98,7 +98,6 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#ffff',
   },
-  
 // area da imagem do perfil
    logo: {
       width:180,
@@ -110,7 +109,6 @@ export default StyleSheet.create({
         borderRadius:20,
         padding:20,
     },
-
 // Container do botao 
 containerButton:{
     flexDirection: 'row',

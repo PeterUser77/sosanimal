@@ -23,17 +23,7 @@ export default function RegisterOng() {
 
     const formRegisterOng = useRef(null);
 //
-const [valueCEP, setValueCEP] = useState("");
-const onChangeCEP = ev => {
-  const originalValue = unMask(ev.target.value)
-  const maskedValue = mask(originalValue,
-    [
-      '99.999-999',
-    ]);
-    setValueCEP(maskedValue);
 
-};
-//
   
     function handleSubmit(data) {
         console.log(data);

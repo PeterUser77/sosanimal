@@ -31,7 +31,7 @@ export default function RegisterOng() {
         <View style={global.containerStatusBar}>
             <View style={styles.LogoView}>
                 <Image
-                    source={require('../../assets/Perfil3.jpg')}
+                    source={require('../../assets/PerfilONG.jpg')}
                     style={styles.logo}
                 />
             </View>
@@ -99,7 +99,6 @@ export default function RegisterOng() {
 
                     <Scope path="address">
                         <View style={global.container}>
-
                             <View style={global.containerSpaceBetween}>
                                 <Input
                                     style={styles.inputCep}
@@ -140,7 +139,7 @@ export default function RegisterOng() {
                                 placeholder="Bairro"
                                 autoCorrect={false}
                                 editable={false}
-
+                                
                             />
 
                             <View style={global.containerSpaceBetween}>
@@ -162,23 +161,20 @@ export default function RegisterOng() {
                             </View>
                         </View>
                     </Scope>
-
-                    <View style={styles.containerButton}>
-
-                        <TouchableOpacity disabled={true}
-                            style={global.buttonProfile}
-                            onPress={() => { formRegisterOng.current.submitForm() }}
-                        >
-                            <Text style={global.textButton}>Salvar</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            style={global.buttonProfile}
-                            onPress={() => { formRegisterOng.current.submitForm() }}
-                        >
-                            <Text style={global.textButton}>Voltar</Text>
-                        </TouchableOpacity>
-                    </View>
+                <View style={styles.containerButton}>
+                    <TouchableOpacity disabled={true}
+                        style={global.buttonProfile}
+                        onPress={() => { formRegisterOng.current.submitForm() }}
+                    >
+                        <Text style={global.textButton}>Salvar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={global.buttonProfile}
+                        onPress={() => { formRegisterOng.current.submitForm() }}
+                    >
+                        <Text style={global.textButton}>Voltar</Text>
+                    </TouchableOpacity>
+                    </View>     
                 </Form>
             </ScrollView>
         </View>

@@ -1,7 +1,6 @@
 import React, {
     useEffect,
-    useRef,
-    useState,
+    useRef
   } from 'react';
   import { TextInput } from 'react-native';
   import { useField } from '@unform/core';

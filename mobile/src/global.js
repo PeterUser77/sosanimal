@@ -56,7 +56,7 @@ export default StyleSheet.create({
         fontSize: 16,
         borderRadius: 10,
         fontWeight: 'bold',
-        backgroundColor: '#FFFF',
+        backgroundColor: '#FFFFFF',
     },
 
     // Button padrão grande, arredondado
@@ -76,14 +76,14 @@ export default StyleSheet.create({
         width: 330,
         height: 50,
         borderRadius: 10,
-        backgroundColor: '#FFFF',
+        backgroundColor: '#FFFFFF',
     },
 
     // Texto do Button
     textButton: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#FFFF',
+        color: '#FFFFFF',
     },
 
     // Texto do Button Birth Date

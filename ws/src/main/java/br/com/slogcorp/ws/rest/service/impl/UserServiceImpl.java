@@ -17,32 +17,32 @@ import static br.com.slogcorp.ws.rest.util.EmailUtils.isValidEmailAddress;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private AddressService addressService;
-    private UserRepository userRepository;
+    private final AddressService addressService;
+    private final UserRepository userRepository;
 
-    public UserServiceImpl(AddressService addressService,
-                           UserRepository userRepository) {
+    public UserServiceImpl(final AddressService addressService,
+                           final UserRepository userRepository) {
         this.addressService = addressService;
         this.userRepository = userRepository;
     }
 
     @Override
-    public void create(User user) {
+    public void create(User user) throws UserException{
         isValidUser(user);
         user.setAddress(addressService.save(user.getAddress()));
         user.setPassword(getEncryptoPassword(user.getPassword()));
         userRepository.save(user);
     }
 
-    private void isValidUser(User user) {
+    private void isValidUser(User user) throws UserException{
 
-        if (!isValidCPF(user.getDocument().toString())) {
+        if (!isValidCPF(user.getDocument())) {
             throw new UserException("CPF Inválido!");
         }
         if (!isValidEmailAddress(user.getEmail())) {
             throw new UserException("E-mail inválido!");
         }
-        if(!emailExists(user.getEmail())){
+        if(emailExists(user.getEmail())){
             throw new UserException("Este e-mail já esta sendo utilizado por outra conta.");
         }
     }

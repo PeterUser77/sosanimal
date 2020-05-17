@@ -1,26 +1,24 @@
 package br.com.slogcorp.ws.rest.controller.impl;
 
 import br.com.slogcorp.ws.rest.controller.UserController;
+import br.com.slogcorp.ws.rest.exception.UserException;
 import br.com.slogcorp.ws.rest.model.User;
 import br.com.slogcorp.ws.rest.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
 public class UserControllerImpl implements UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    public UserControllerImpl(UserService userService) {
+    public UserControllerImpl(final UserService userService) {
         this.userService = userService;
     }
 
     @Override
-    @PostMapping("/create")
-    public void create(@RequestBody User user) {
+    @PutMapping("/create")
+    public void create(@RequestBody User user) throws UserException {
         userService.create(user);
     }
 

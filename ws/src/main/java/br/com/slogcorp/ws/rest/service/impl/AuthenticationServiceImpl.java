@@ -12,9 +12,9 @@ import java.util.Optional;
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private UserService userService;
+    private final UserService userService;
 
-    public AuthenticationServiceImpl(UserService userService) {
+    public AuthenticationServiceImpl( final UserService userService) {
         this.userService = userService;
     }
 

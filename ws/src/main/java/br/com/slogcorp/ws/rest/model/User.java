@@ -51,6 +51,12 @@ public class User {
     @Column(name = "PHONE")
     private String phone;
 
+    @Size(max = 20)
+    @Setter
+    @Getter
+    @Column(name = "TOKEN")
+    private String token;
+
     @Setter
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CD_ADRESS", referencedColumnName = "ID_ADDRESS")

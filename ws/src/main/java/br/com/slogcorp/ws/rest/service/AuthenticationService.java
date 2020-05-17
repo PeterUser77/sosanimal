@@ -1,7 +1,7 @@
 package br.com.slogcorp.ws.rest.service;
 
-import br.com.slogcorp.ws.rest.dto.UserDTO;
+import br.com.slogcorp.ws.rest.dto.AuthenticateDTO;
 
 public interface AuthenticationService {
-    UserDTO authenticate(String login, String password);
+    AuthenticateDTO authenticate(String login, String password);
 }

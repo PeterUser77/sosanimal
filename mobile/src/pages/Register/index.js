@@ -44,11 +44,8 @@ export default function Register() {
                 setValidCep(true);
                 setCepTemp(cep);
             }).catch(err => {
-                if (err.response.data.message !== null) {
-                    alert(err.response.data.message);
-                } else {
-                    alert("Ocorreu um erro ao buscar os dados referente ao CEP informado, tente novamente! Se o problema persistir contacte o administrador do sistema.");
-                }
+                formRegister.current.setFieldError('address.cep', 'CEP inválido!');
+                alert(formRegister.current.getFieldError('address.cep'));
             })
     }
 
@@ -245,7 +242,7 @@ export default function Register() {
                         </View>
                     </Scope>
 
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styleButton()}
                         disabled={disabledButtonRegister()}
                         onPress={() => { formRegister.current.submitForm() }}

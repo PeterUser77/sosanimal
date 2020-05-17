@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/authentication")
 public class AuthenticationControllerImpl implements AuthenticationController {
 
-    private AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
-    public AuthenticationControllerImpl(AuthenticationService authenticationService) {
+    public AuthenticationControllerImpl(final AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
     @Override
     @PostMapping("/new")
-    public ResponseEntity<UserDTO> authenticate(@RequestBody AuthenticateDTO login) {
+    public ResponseEntity<AuthenticateDTO> authenticate(@RequestBody UserDTO login) {
         return ResponseEntity.accepted()
-                .body(authenticationService.authenticate(login.getLogin(), login.getPassword()));
+                .body(authenticationService.authenticate(login.getEmail(), login.getPassword()));
     }
 }

@@ -26,6 +26,8 @@ export default function Register() {
     const navigation = useNavigation();
     const formRegister = useRef(null);
     const [validCep, setValidCep] = useState(false);
+    const [cepTemp, setCepTemp] = useState();
+
 
     function navigateToAuth() {
         navigation.navigate('Auth');
@@ -39,11 +41,8 @@ export default function Register() {
                 formRegister.current.setFieldValue('address.neighborhood', res.data.neighborhood);
                 formRegister.current.setFieldValue('address.state', res.data.state);
                 formRegister.current.setFieldValue('address.publicPlace', res.data.publicPlace);
-                console.log(res.data.district);
-                console.log(res.data.neighborhood);
-                console.log(res.data.city);
-                console.log(res.data.publicPlace);
                 setValidCep(true);
+                setCepTemp(cep);
             }).catch(err => {
                 formRegister.current.setFieldError('address.cep', 'CEP inválido!');
                 alert(formRegister.current.getFieldError('address.cep'));
@@ -52,49 +51,59 @@ export default function Register() {
 
     function validateEmail(email) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            return (true)
+            return (true);
         }
         formRegister.current.setFieldError('email', 'E-mail invalido!');
-        return (false)
+        return (false);
     }
 
-    function validateCep() {
-        if (validCep) {
-            formRegister.current.setFieldError('address.cep', 'É necessario validar o CEP para prosseguir com o cadastro!');
-            return (false);
+    function validateCep(cep){
+        if(cepTemp !== cep){
+            setValidCep(false);
+            alert('Erro ao cadastrar! CEP não verificado.');
         }
-        return (true)
+    }
+
+    function disabledButtonRegister(){
+        return validCep !== true;
     }
 
     async function handleSubmit(data) {
 
         validateEmail(data.email);
-        validateCep();
+        validateCep(data.address.cep);
 
         const password = await Crypto(data.password);
-        try {
-            await Api.put('user/create',
-                {
-                    'firstName': data.firstName,
-                    'lastName': data.lastName,
-                    'email': data.email,
-                    'password': password,
-                    'phone': data.phone,
-                    'document': data.document,
-                    'address': data.address,
-                    'birthDate': data.birthDate
-                });
 
-            alert("Usuário cadastrado com sucesso.");
-            navigateToAuth();
-        } catch (err) {
-            if(err.response.data.message !== null){
-                alert(err.response.data.message);
-            }else{
-                alert("Ocorreu um erro ao tentar cadastrar o usuário, tente novamente! Se o problema persistir contacte o administrador do sistema.");
-            }            
+        await Api.put('user/create',
+            {
+                'firstName': data.firstName,
+                'lastName': data.lastName,
+                'email': data.email,
+                'password': password,
+                'phone': data.phone,
+                'document': data.document,
+                'address': data.address,
+                'birthDate': data.birthDate
+            }).then(res => {
+                alert("Usuário cadastrado com sucesso.");
+                navigateToAuth();
+            }).catch(err => {
+                if (err.response.data.message !== null) {
+                    alert(err.response.data.message);
+                } else {
+                    alert("Ocorreu um erro ao tentar cadastrar o usuário, tente novamente! Se o problema persistir contacte o administrador do sistema.");
+                }
+            });
+
+    }
+
+    function styleButton(){
+        if(disabledButtonRegister()){
+            return global.disabledButton;
+        }else{
+            return global.button;
         }
-
     }
 
     return (
@@ -234,7 +243,8 @@ export default function Register() {
                     </Scope>
 
                     <TouchableOpacity
-                        style={global.button}
+                        style={styleButton()}
+                        disabled={disabledButtonRegister()}
                         onPress={() => { formRegister.current.submitForm() }}
                     >
                         <Text style={global.textButton}>Cadastrar</Text>

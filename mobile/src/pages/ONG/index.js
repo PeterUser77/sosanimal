@@ -29,26 +29,26 @@ export default function Home() {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
+        <View style={global.containerMenu}>
+            <View style={global.header}>
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToCase()}>
 
-                    <Text style={styles.botaoText}> Cadastrar </Text>
+                    <Text style={global.textButton}> Cadastrar </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToHomeONG()}>
-                    <Text style={styles.botaoText}> Voltar </Text>
+                    <Text style={global.textButton}> Voltar </Text>
                 </TouchableOpacity>
 
         
             </View>
     
-            <View style={styles.totalizaCasos}>
-                <Text style={styles.totalizaCasosText}> Total de Casos: 0 </Text>
+            <View style={global.totalizaCasos}>
+                <Text style={global.totalizaCasosText}> Total de Casos: 0 </Text>
             </View>
          
            <View style = {styles.incidentsList}>

@@ -84,6 +84,35 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
    
-    }
+    },
+    header:{
+       
+        alignItems: 'center',
+        backgroundColor: '#FF8C00',
+        flexDirection:'row',
+        
+    },
+     
+    containerMenu: {
+        flex: 1, 
+  
+    },
+
+   totalizaCasos:{
+        borderRadius:10,
+        padding: 10,
+        width:'100%',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: "#C9C9C3",
+    },
+
+    totalizaCasosText:{
+        fontSize: 18,
+        fontWeight: 'bold',
+       
+    }, 
+   
 
 });

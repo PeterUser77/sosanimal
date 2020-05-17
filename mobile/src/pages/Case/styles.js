@@ -69,8 +69,9 @@ export default StyleSheet.create({
         padding: 24,
         width:'50%',
         borderRadius: 10,
-        backgroundColor: '#FFF',
-        marginTop: 24,      
+        backgroundColor: '#FF8C00',
+        marginTop: 24, 
+             
     }, 
 
     detailsButton: {
@@ -81,8 +82,8 @@ export default StyleSheet.create({
     },
 
     detailButtonText:{
-        color: '#FF8C00',
-        fontSize: 15,
+        color: '#FFF',
+        fontSize: 18,
         fontWeight: 'bold',
     },
 
@@ -91,6 +92,7 @@ export default StyleSheet.create({
         padding: 5,
         backgroundColor: '#FFF',
         borderRadius: 10,
+
     },
 
     textarea: {

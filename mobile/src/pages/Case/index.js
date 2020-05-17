@@ -37,15 +37,14 @@ export default function Case() {
     }
     return (
 
-        <View style={styles.container}>
+        <View style={global.containerMenu}>
             <Form ref={formAuth} onSubmit={handleSubmit}>
-
-                <View style={styles.header}>
+                <View style={global.header}>
                     <TouchableOpacity
                         style={global.botaoHome}
                         onPress={() => navigateToONG()}>
 
-                        <Text style={styles.botaoText}> Voltar </Text>
+                        <Text style={global.textButton}> Voltar </Text>
                     </TouchableOpacity>
                 </View>
 
@@ -57,7 +56,7 @@ export default function Case() {
 
                     <TextInputArea
                         containerStyle={styles.textareaContainer}
-                        style={styles.textarea}
+                        style={styles.textButton}
                         type="text"
                         placeholder="digite a descrição"
                         name="Descricao"

@@ -28,7 +28,7 @@ export default function Case() {
                     style={global.botaoHome}
                     onPress={() => navigateToAuth()}>
 
-                    <Text style={styles.botaoText}> Cadastrar </Text>
+                    <Text style={global.textButton}> Cadastrar </Text>
                 </TouchableOpacity>
 
             </View>

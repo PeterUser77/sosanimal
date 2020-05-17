@@ -29,30 +29,30 @@ export default function Home() {
         navigation.navigate('HomeONG');
     }
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
+        <View style={global.containerMenu}>
+            <View style={global.header}>
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToHomeONG()}>
 
-                    <Text style={styles.botaoText}> ONG </Text>
+                    <Text style={global.textButton}> ONG </Text>
                 </TouchableOpacity>
                
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToRegister()}>
-                    <Text style={styles.botaoText}> Perfil </Text>
+                    <Text style={global.textButton}> Perfil </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToAuth()}>
-                    <Text style={styles.botaoText}> Sair </Text>
+                    <Text style={global.textButton}> Sair </Text>
                 </TouchableOpacity>
             </View>
     
-            <View style={styles.totalizaCasos}>
-                <Text style={styles.totalizaCasosText}> Total de Casos: 0 </Text>
+            <View style={global.totalizaCasos}>
+                <Text style={global.totalizaCasosText}> Total de Casos: 0 </Text>
             </View>
          
            <View style = {styles.incidentsList}>

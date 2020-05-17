@@ -31,25 +31,25 @@ export default function Home() {
    
    
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
+        <View style={global.containerMenu}>
+            <View style={global.header}>
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToONG()}>
 
-                    <Text style={styles.botaoText}> Casos </Text>
+                    <Text style={global.textButton}> Casos </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToProfile()}>
-                    <Text style={styles.botaoText}> Perfil </Text>
+                    <Text style={global.textButton}> Perfil </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.botaoHome}
                     onPress={() => navigateToHome()}>
-                    <Text style={styles.botaoText}> Voltar </Text>
+                    <Text style={global.textButton}> Voltar </Text>
                 </TouchableOpacity>
             </View>
     

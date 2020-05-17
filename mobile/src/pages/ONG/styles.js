@@ -31,21 +31,7 @@ export default StyleSheet.create({
         color: '#ffff',
     },
 
-    totalizaCasos:{
-        padding: 10,
-        width:'100%',
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 2,
-        borderColor: "#C9C9C3",
-    },
-
-    totalizaCasosText:{
-        fontSize: 18,
-        fontWeight: 'bold',
-       
-    }, 
+    
     incidentsList:{
         flex: 1, 
     }, 

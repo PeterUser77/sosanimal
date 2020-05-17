@@ -7,10 +7,7 @@ import Constants from 'expo-constants';
 
 export default StyleSheet.create({
     
-    container: {
-        flex: 1, 
-        paddingTop: +20,
-    },
+
     header:{
         
         alignItems: 'center',

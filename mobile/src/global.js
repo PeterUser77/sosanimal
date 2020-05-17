@@ -70,6 +70,17 @@ export default StyleSheet.create({
         backgroundColor: '#FF8C00',
     },
 
+    // Button padrão grande, desabilitado
+    disabledButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 330,
+        height: 50,
+        marginTop: 10,
+        borderRadius: 10,
+        backgroundColor: '#FDC38A',
+    },
+
     buttonBirthDate: {
         marginTop: 5,
         padding: 10,

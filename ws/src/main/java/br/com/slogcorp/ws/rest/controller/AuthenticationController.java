@@ -6,5 +6,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface AuthenticationController {
 
-    ResponseEntity<UserDTO> authenticate(AuthenticateDTO login);
+    ResponseEntity<AuthenticateDTO> authenticate(UserDTO login);
 }

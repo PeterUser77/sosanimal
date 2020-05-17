@@ -30,8 +30,13 @@ public class UserServiceImpl implements UserService {
     public void create(User user) throws UserException{
         isValidUser(user);
         user.setAddress(addressService.save(user.getAddress()));
-        user.setPassword(getEncryptoPassword(user.getPassword()));
+        user.setPassword(user.getPassword());
         userRepository.save(user);
+    }
+
+    @Override
+    public void updateTokenByCdUser(String token, Integer cdUser) {
+        userRepository.updateTokenByCdUser(token, cdUser);
     }
 
     private void isValidUser(User user) throws UserException{

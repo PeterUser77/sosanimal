@@ -26,8 +26,6 @@ export default function Register() {
     const navigation = useNavigation();
     const formRegister = useRef(null);
     const [validCep, setValidCep] = useState(false);
-    const [response, setReponse] = useState();
-    const [request, setRequest] = useState();
 
     function navigateToAuth() {
         navigation.navigate('Auth');
@@ -94,9 +92,7 @@ export default function Register() {
                 alert(err.response.data.message);
             }else{
                 alert("Ocorreu um erro ao tentar cadastrar o usuário, tente novamente! Se o problema persistir contacte o administrador do sistema.");
-            }
-            
-            
+            }            
         }
 
     }

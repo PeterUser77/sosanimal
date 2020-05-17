@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/adress")
-public class AdressControllerImpl implements AdressController {
+@RequestMapping("/address")
+public class AddressControllerImpl implements AdressController {
 
     private AddressService addressService;
 
-    public AdressControllerImpl(AddressService addressService) {
+    public AddressControllerImpl(AddressService addressService) {
         this.addressService = addressService;
     }
 

@@ -37,10 +37,10 @@ public class Address {
 
     @Setter
     @Column(name = "STATE")
-    private String district;
+    private String state;
 
     @Setter
     @Column(name = "CEP")
-    private Integer cep;
+    private String cep;
 
 }

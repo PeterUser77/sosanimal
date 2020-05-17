@@ -21,34 +21,84 @@ import { Scope } from '@unform/core';
 import Api from '../../service/Api';
 
 
-
 export default function Register() {
 
     const navigation = useNavigation();
     const formRegister = useRef(null);
+    const [validCep, setValidCep] = useState(false);
+    const [response, setReponse] = useState();
+    const [request, setRequest] = useState();
+
+    function navigateToAuth() {
+        navigation.navigate('Auth');
+    }
+
+    async function findByCep(cep) {
+
+        await Api.get('address/findByCep?cep=' + cep)
+            .then(res => {
+                formRegister.current.setFieldValue('address.city', res.data.city);
+                formRegister.current.setFieldValue('address.neighborhood', res.data.neighborhood);
+                formRegister.current.setFieldValue('address.state', res.data.state);
+                formRegister.current.setFieldValue('address.publicPlace', res.data.publicPlace);
+                console.log(res.data.district);
+                console.log(res.data.neighborhood);
+                console.log(res.data.city);
+                console.log(res.data.publicPlace);
+                setValidCep(true);
+            }).catch(err => {
+                formRegister.current.setFieldError('address.cep', 'CEP inválido!');
+                alert(formRegister.current.getFieldError('address.cep'));
+            })
+    }
+
+    function validateEmail(email) {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            return (true)
+        }
+        formRegister.current.setFieldError('email', 'E-mail invalido!');
+        return (false)
+    }
+
+    function validateCep() {
+        if (validCep) {
+            formRegister.current.setFieldError('address.cep', 'É necessario validar o CEP para prosseguir com o cadastro!');
+            return (false);
+        }
+        return (true)
+    }
 
     async function handleSubmit(data) {
 
-        console.log(data.password);
+        validateEmail(data.email);
+        validateCep();
+
         const password = await Crypto(data.password);
+        try {
+            await Api.put('user/create',
+                {
+                    'firstName': data.firstName,
+                    'lastName': data.lastName,
+                    'email': data.email,
+                    'password': password,
+                    'phone': data.phone,
+                    'document': data.document,
+                    'address': data.address,
+                    'birthDate': data.birthDate
+                });
 
-        //VALIDAÇÕES ----------
+            alert("Usuário cadastrado com sucesso.");
+            navigateToAuth();
+        } catch (err) {
+            if(err.response.data.message !== null){
+                alert(err.response.data.message);
+            }else{
+                alert("Ocorreu um erro ao tentar cadastrar o usuário, tente novamente! Se o problema persistir contacte o administrador do sistema.");
+            }
+            
+            
+        }
 
-        //ENVIAR BACKEND ------
-        const response = await api.post('incidents', {
-            params: {page}
-        });
-
-        console.log({
-            'firstName': data.firstNamem,
-            'lastName': data.lastName,
-            'email': data.email,
-            'password': password,
-            'phone': data.phone,
-            'document': data.document,
-            'address': data.address,
-            'date': data.birthDate
-        });
     }
 
     return (
@@ -63,7 +113,7 @@ export default function Register() {
                 <Form ref={formRegister} onSubmit={handleSubmit}>
 
                     <View style={global.container}>
-                    
+
                         <Input
                             style={global.input}
                             name="firstName"
@@ -80,7 +130,7 @@ export default function Register() {
 
                         <MyDatePicker
                             name="birthDate"
-                            placeholder= "Data de Nascimento"
+                            placeholder="Data de Nascimento"
                         />
 
                         <Input
@@ -129,7 +179,7 @@ export default function Register() {
                                 />
                                 <TouchableOpacity
                                     style={styles.checkButton}
-                                    onPress={() => { }}
+                                    onPress={() => { findByCep(formRegister.current.getFieldValue('address.cep')) }}
                                 >
                                     <Text style={global.textButton}>Verificar</Text>
                                 </TouchableOpacity>
@@ -145,7 +195,7 @@ export default function Register() {
                                 />
                                 <Input
                                     style={styles.inputUf}
-                                    name="uf"
+                                    name="state"
                                     placeholder="UF"
                                     autoCorrect={false}
                                     editable={false}
@@ -159,6 +209,15 @@ export default function Register() {
                                 autoCorrect={false}
                                 editable={false}
                             />
+
+                            <Input
+                                style={styles.inputNeighborhood}
+                                name="publicPlace"
+                                placeholder="Logradouro"
+                                autoCorrect={false}
+                                editable={false}
+                            />
+
 
                             <View style={global.containerSpaceBetween}>
                                 <Input

@@ -1,7 +1,7 @@
 package br.com.slogcorp.ws.rest.service.impl;
 
 import br.com.slogcorp.ws.rest.dto.AdressDTO;
-import br.com.slogcorp.ws.rest.exception.AdressException;
+import br.com.slogcorp.ws.rest.exception.AddressException;
 import br.com.slogcorp.ws.rest.model.Address;
 import br.com.slogcorp.ws.rest.repository.AddressRepository;
 import br.com.slogcorp.ws.rest.service.AddressService;
@@ -28,7 +28,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Address findByCep(String cep) {
+    public Address findByCep(String cep) throws AddressException {
         RestTemplate template = new RestTemplate();
 
         UriComponents uri = UriComponentsBuilder.newInstance()
@@ -40,20 +40,25 @@ public class AddressServiceImpl implements AddressService {
                 .build();
 
         try {
-            Optional<AdressDTO> adressDTO = Optional.ofNullable(template.getForObject(uri.toUriString(), AdressDTO.class));
+            Optional<AdressDTO> addressDTO = Optional.ofNullable(template.getForObject(uri.toUriString(), AdressDTO.class));
             Address address = new Address();
-            if (adressDTO.isPresent()) {
-                address.setCep(adressDTO.get().getCep());
-                address.setCity(adressDTO.get().getLocalidade());
-                address.setPublicPlace(adressDTO.get().getLogradouro());
-                address.setNeighborhood(adressDTO.get().getBairro());
-                address.setState(adressDTO.get().getUf());
+            if (addressDTO.isPresent() &&
+                    (addressDTO.get().getBairro() != null ||
+                            addressDTO.get().getCep() != null ||
+                            addressDTO.get().getLocalidade() != null ||
+                            addressDTO.get().getUf() != null ||
+                            addressDTO.get().getLogradouro() != null)) {
+                address.setCep(addressDTO.get().getCep());
+                address.setCity(addressDTO.get().getLocalidade());
+                address.setPublicPlace(addressDTO.get().getLogradouro());
+                address.setNeighborhood(addressDTO.get().getBairro());
+                address.setState(addressDTO.get().getUf());
                 return address;
-            }else{
-                throw new AdressException("Ocorreu um erro ao buscar os dados referente ao CEP [".concat(cep).concat("]"));
+            } else {
+                throw new AddressException("Ocorreu um erro ao buscar os dados referente ao CEP [".concat(cep).concat("]"));
             }
         } catch (HttpClientErrorException ex) {
-            throw new AdressException("CEP Inválido!");
+            throw new AddressException("CEP Inválido!");
         }
     }
 }

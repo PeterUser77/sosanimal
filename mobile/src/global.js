@@ -104,4 +104,13 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         color: '#C3C3C3',
     },
+    botaoHome: {
+        flex: 1,
+        height: 50,
+        backgroundColor: '#FF8C00',
+        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+
 });

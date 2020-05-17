@@ -104,7 +104,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         color: '#C3C3C3',
     },
-    botaoHome: {
+    menuButton: {
         flex: 1,
         height: 50,
         backgroundColor: '#FF8C00',

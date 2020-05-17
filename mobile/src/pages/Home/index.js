@@ -19,63 +19,63 @@ import { useNavigation } from '@react-navigation/native';
 export default function Home() {
     const navigation = useNavigation();
 
-    function navigateToDetail(){
+    function navigateToDetail() {
         navigation.navigate('Detail');
     }
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+
                 <TouchableOpacity
-                    style={global.botaoHome}
+                    style={global.menuButton}
                     onPress={() => navigateToHome()}>
-
-                    <Text style={styles.botaoText}> ONG </Text>
+                    <Text style={global.textButton}> ONG </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={global.botaoHome}
+                    style={global.menuButton}
                     onPress={() => navigateToRegister()}>
-                    <Text style={styles.botaoText}> Perfil </Text>
+                    <Text style={global.textButton}> Perfil </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={global.botaoHome}
+                    style={global.menuButton}
                     onPress={() => navigateToRegister()}>
-                    <Text style={styles.botaoText}> Sair </Text>
+                    <Text style={global.textButton}> Sair </Text>
                 </TouchableOpacity>
             </View>
-    
-            <View style={styles.totalizaCasos}>
-                <Text style={styles.totalizaCasosText}> Total de Casos: 0 </Text>
+
+            <View style={styles.totalIncidents}>
+                <Text style={styles.totalIncidentsText}> Total de Casos: 0 </Text>
             </View>
-         
-           <View style = {styles.incidentsList}>
-            <FlatList 
-            data= {[1, 2, 3]}
-            renderItem = { () => ( 
-            <View style={styles.incident}>
-                <Text style={styles.incidentProperty}>ONG:</Text>
-                <Text style={styles.incidentValue}>NomeDaONG</Text>
 
-                <Text style={styles.incidentProperty}>CASO:</Text>
-                <Text style={styles.incidentValue}>Descricao do Caso</Text>
+            <View style={styles.incidentsList}>
+                <FlatList
+                    data={[1, 2, 3]}
+                    renderItem={() => (
+                        <View style={styles.incident}>
+                            <Text style={styles.incidentTextTitle}>Ong:</Text>
+                            <Text style={styles.incidentTextDescription}>Nome Da ONG</Text>
 
-                <Text style={styles.incidentProperty}>VALOR:</Text>
-                <Text style={styles.incidentValue}>R$ 100,00</Text>
+                            <Text style={styles.incidentTextTitle}>Caso:</Text>
+                            <Text style={styles.incidentTextDescription}>Descricao do Caso</Text>
 
-                <TouchableOpacity style={styles.detailsButton} onPress={navigateToDetail}>
-                    <Text style={styles.detailButtonText}>+ Detalhes</Text>
-                </TouchableOpacity>
+                            <Text style={styles.incidentTextTitle}>Valor:</Text>
+                            <Text style={styles.incidentTextDescription}>R$ 100,00</Text>
+
+                            <TouchableOpacity style={styles.detailButton} onPress={navigateToDetail}>
+                                <Text style={styles.detailButtonText}>+ Detalhes</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    )}
+                />
             </View>
-            
-             )}
-             />
-             </View>
-           
-            
 
-        </View> 
+
+
+        </View>
     );
 
 }

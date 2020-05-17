@@ -19,7 +19,7 @@ export default function Init() {
     }
 
     function navigateToRegister() {
-        navigation.navigate('Register');
+        navigation.navigate('RegisterUser');
     }
 
     function navigateToRegisterOng() {

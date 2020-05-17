@@ -31,18 +31,17 @@ export default StyleSheet.create({
         color: '#ffff',
     },
 
-    totalizaCasos:{
+    totalIncidents:{
         padding: 10,
         width:'100%',
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
         borderColor: "#C9C9C3",
     },
 
-    totalizaCasosText:{
-        fontSize: 18,
+    totalIncidentsText:{
+        fontSize: 16,
         fontWeight: 'bold',
        
     }, 
@@ -57,22 +56,23 @@ export default StyleSheet.create({
         marginBottom: 10,
     }, 
 
-    incidentProperty:{
+    incidentTextTitle:{
         fontSize:14, 
         color: '#FF8C00',
         fontWeight: 'bold',
         
     }, 
-    incidentValue: {
+    incidentTextDescription: {
         marginTop: 8,
         fontSize: 15,
         marginBottom: 10,
     },
-    detailsButton: {
+
+    detailButton: {
         alignItems: 'flex-end',
     },
     detailButtonText:{
-        color: '#e02041',
+        color: '#FF8C00',
         fontSize: 15,
         fontWeight: 'bold',
         

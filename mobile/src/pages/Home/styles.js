@@ -1,7 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Platform } from 'react-native';
-import { KeyboardAvoidingView } from 'react-native';
-import Constants from 'expo-constants';
 
 
 
@@ -49,7 +46,7 @@ export default StyleSheet.create({
         alignItems: 'flex-end',
     },
     detailButtonText:{
-        color: '#e02041',
+        color: '#FF8C00',
         fontSize: 15,
         fontWeight: 'bold',
         

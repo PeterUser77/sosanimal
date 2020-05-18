@@ -17,7 +17,7 @@ import { Scope } from '@unform/core';
 
 
 
-export default function Register() {
+export default function RegisterOng() {
 
     const navigation = useNavigation();
     const formRegisterOng = useRef(null);

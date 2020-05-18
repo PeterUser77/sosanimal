@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Input from '../../components/Form/Input';
-import { crypto } from '../../secure/Crypto';
+import Crypto from '../../secure/Crypto';
 
 import styles from './styles';
 import global from '../../global';
@@ -22,8 +22,11 @@ export default function Auth() {
   const navigation = useNavigation();
 
   async function handleSubmit(data) {
-    const password = await crypto('text');
+    const password = await Crypto(data.password);
     console.log(password);
+
+    navigation.navigate('HomeUser');
+
   }
 
   return (

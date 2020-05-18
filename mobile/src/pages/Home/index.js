@@ -1,23 +1,49 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-    Alert,
     Text,
-    StyleSheet,
     View,
     FlatList,
-    Image,
-    TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native'
 import styles from './styles';
 import global from '../../global';
 
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 export default function Home() {
     const navigation = useNavigation();
+    const route = useRoute();
+    const KEY_FIST_NAME = 'KEY_FIRST_NAME';
+    const KEY_TOKEN = 'KEY_TOKEN';
+    const KEY_CD_USER = 'KEY_CD_USER';
+    const [incidents, setIncidents] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
+    const [load, setLoad] = useState(false);
+    const userName = route.params.userName;
+
+    async function loadIncidents() {
+        if (load) {
+            return;
+        }
+
+        if (total > 0 && incidents.length == total) {
+
+        }
+
+        setLoad(true);
+
+        const response = await api.get('incidents', {
+            params: { page }
+        });
+        setIncidents([...incidents, ...response.data]);
+        setTotal(response.headers['x-total-count']);
+        setPage(page + 1);
+        setLoad(false);
+    }
 
     function navigateToDetail() {
         navigation.navigate('Detail');
@@ -47,24 +73,37 @@ export default function Home() {
             </View>
 
             <View style={styles.totalIncidents}>
-                <Text style={styles.totalIncidentsText}> Total de Casos: 0 </Text>
+                <Text style={styles.headerText}>Total de <Text style={styles.headerTextBold}>{total} casos</Text>
+                </Text>
             </View>
+
+    <Text style={styles.title}>Bem vindo(a), {userName}!</Text>
+            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
 
             <View style={styles.incidentsList}>
                 <FlatList
-                    data={[1, 2, 3]}
-                    renderItem={() => (
+                    data={incidents}
+                    keyExtractor={incident => String(incident.cdIncident)}
+                    showsVerticalScrollIndicator={false}
+                    onEndReached={loadIncidents}
+                    onEndReachedThreshold={0.5}
+                    renderItem={({ item: incident }) => (
                         <View style={styles.incident}>
-                            <Text style={styles.incidentTextTitle}>Ong:</Text>
-                            <Text style={styles.incidentTextDescription}>Nome Da ONG</Text>
+                            <Text style={styles.incidentTextTitle}>ONG:</Text>
+                            <Text style={styles.incidentTextDescription}>{incident.name}</Text>
 
-                            <Text style={styles.incidentTextTitle}>Caso:</Text>
-                            <Text style={styles.incidentTextDescription}>Descricao do Caso</Text>
+                            <Text style={styles.incidentTextTitle}>CASO:</Text>
+                            <Text style={styles.incidentTextDescription}>{incident.title}</Text>
 
-                            <Text style={styles.incidentTextTitle}>Valor:</Text>
-                            <Text style={styles.incidentTextDescription}>R$ 100,00</Text>
+                            <Text style={styles.incidentTextTitle}>VALOR:</Text>
+                            <Text style={styles.incidentTextDescription}>{Intl.NumberFormat('pt-BR',
+                                {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(incident.value)}
+                            </Text>
 
-                            <TouchableOpacity style={styles.detailButton} onPress={navigateToDetail}>
+                            <TouchableOpacity style={styles.detailButton} onPress={() => { navigateToDetail() }}>
                                 <Text style={styles.detailButtonText}>+ Detalhes</Text>
                             </TouchableOpacity>
                         </View>

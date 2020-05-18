@@ -11,7 +11,7 @@ import ONG from './pages/ONG';
 import Case from './pages/Case';
 import ListarONG from './pages/ListarONG';
 import HomeONG from './pages/HomeONG';
-import Masked from './pages/Masked';
+
 
 const AppStack = createStackNavigator();
 export default function Routes() {
@@ -28,7 +28,6 @@ export default function Routes() {
                 <AppStack.Screen name="Case" component={Case} />
                 <AppStack.Screen name="ListarONG" component={ListarONG} />
                 <AppStack.Screen name="HomeONG" component={HomeONG} />
-                <AppStack.Screen name="Masked" component={Masked} />
             </AppStack.Navigator>
 
         </NavigationContainer>

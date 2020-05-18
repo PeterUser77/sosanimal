@@ -26,9 +26,6 @@ export default function Init() {
         navigation.navigate('RegisterOng');
     }
 
-    function navigateToMasked() {
-        navigation.navigate('Masked');
-    }
     return (
 
         <View style={global.container}>
@@ -60,11 +57,6 @@ export default function Init() {
                         <Text style={global.textButton}> Registrar ONG</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity
-                        style={global.button}
-                        onPress={() => navigateToMasked()}>
-                        <Text style={global.textButton}> Masked</Text>
-                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         </View>

@@ -28,8 +28,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         updateTokenUser(result.get().getToken(), result.get().getCdUser());
 
         AuthenticateDTO authenticateDTO = new AuthenticateDTO();
-        authenticateDTO.setIdUser(result.get().getCdUser());
+        authenticateDTO.setCdUser(result.get().getCdUser().toString());
         authenticateDTO.setToken(result.get().getToken());
+        authenticateDTO.setFirstName(result.get().getFirstName());
+
         return authenticateDTO;
     }
 

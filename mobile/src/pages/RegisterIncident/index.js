@@ -1,51 +1,50 @@
-import React, { useRef, Component } from 'react-native';
-import {
-    Alert,
-    Text,
-    StyleSheet,
-    View,
-    FlatList,
-    Image,
-    TextInput,
-    TouchableOpacity
-} from 'react-native'
 import { Form } from '@unform/mobile';
+import React, { useRef, useState } from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+import Input from '../../components/Form/Input';
+import TextInputArea from '../../components/Form/TextInputArea';
+import global from '../../global';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/native';
-import global from '../../global';
-import Input from '../../components/Form/Input';
 
-export default function Incident() {
-
-    const formIncident = useRef(null);
+export default function Case() {
     const navigation = useNavigation();
+
+
+    const formRegisterIncident = useRef(null);
 
     function handleSubmit(data) {
         console.log(data);
-    }
-    Case
+    };
+
+    function navigateToHomeOng() {
+        navigation.navigate('HomeOng');
+    };
+
     return (
 
         <View style={styles.container}>
+
             <View style={styles.header}>
                 <TouchableOpacity
-                    style={global.botaoHome}
-                    onPress={() => navigateToAuth()}>
-
-                    <Text style={styles.botaoText}> Voltar </Text>
+                    style={global.menuButton}
+                    onPress={() => navigateToHomeOng()}>
+                    <Text style={global.textButton}> Voltar </Text>
                 </TouchableOpacity>
             </View>
 
-            <Form ref={formIncident} onSubmit={handleSubmit}>
-            
+            <Form ref={formRegisterIncident} onSubmit={handleSubmit}>
                 <View style={styles.title}>
                     <Text style={styles.titletext}>ONG</Text>
                 </View>
 
                 <View style={styles.description}>
-                    <Input style={styles.descriptiontext}>
-
-                    </Input>
+                    <TextInputArea
+                        containerStyle={styles.textareaContainer}
+                        style={styles.textButton}
+                        placeholder="digite a descrição"
+                        name="description"
+                    />
                 </View>
 
                 <View style={styles.title}>
@@ -53,17 +52,22 @@ export default function Incident() {
                 </View>
 
                 <View style={styles.description}>
-                    <Text style={styles.descriptiontext}> R$ 120,00 </Text>
+                    <Input
+
+                        keyboardType="number-pad"
+                        placeholder="R$"
+                        name="Valor"
+                        style={global.input}
+                    />
                 </View>
 
-                <View style={styles.buttoncontainer}>
-                    <View style={styles.button}>
-                        <TouchableOpacity style={styles.detailsButton} onPress={() => { formCase.current.submitForm() }}>
-                            <Text style={styles.detailButtonText}>Cadastrar</Text>
-                        </TouchableOpacity>
-                    </View>
+                <View style={global.container}>
+                    <TouchableOpacity
+                        style={global.button}
+                        onPress={() => { formRegisterIncident.current.submitForm() }}>
+                        <Text style={styles.detailButtonText}>Cadastrar</Text>
+                    </TouchableOpacity>
                 </View>
-                
             </Form>
         </View>
 

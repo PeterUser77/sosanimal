@@ -1,7 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Platform } from 'react-native';
-import { KeyboardAvoidingView } from 'react-native';
-import Constants from 'expo-constants';
 
 
 
@@ -11,13 +8,13 @@ export default StyleSheet.create({
         flex: 1, 
         backgroundColor: '#E5ECE8',        
     },
+    
     header:{
-        
         alignItems: 'center',
         backgroundColor: '#E5ECE8',
         flexDirection:'row',
-        
     },
+
     botao: {
         flex: 1,
         height: 50,
@@ -35,20 +32,22 @@ export default StyleSheet.create({
     },
 
     title : {
-        marginTop: 20, 
-        padding: 15
-
+        padding: 10,
+        marginLeft: 10,
     },
-
+    
     titletext: {
         fontSize: 20,  
         fontWeight: 'bold',
         color: '#FF8C00'
-
     },
 
     description: {
         padding: 15,
+        flexDirection:'row',
+        borderRadius: 10,
+        marginTop: -20,
+        marginBottom: -15,
     },
 
     descriptiontext: {
@@ -59,15 +58,17 @@ export default StyleSheet.create({
     buttoncontainer:{
         flex: 1, 
         alignItems: 'center',
-        justifyContent: 'center'   
+        justifyContent: 'center',
+        marginTop: -230,
     },
 
     button:{
         padding: 24,
-        width:'50%',
+        width:330,
         borderRadius: 10,
-        backgroundColor: '#FFF',
-        marginTop: 24,      
+        backgroundColor: '#FF8C00',
+        marginTop: 50, 
+             
     }, 
 
     detailsButton: {
@@ -78,12 +79,28 @@ export default StyleSheet.create({
     },
 
     detailButtonText:{
-        color: '#FF8C00',
-        fontSize: 15,
+        color: '#FFF',
+        fontSize: 18,
         fontWeight: 'bold',
-        
+    },
 
-    }
+    textareaContainer: {
+        height: 200,
+        padding: 5,
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+
+    },
+
+    textarea: {
+        textAlignVertical: 'top',  // hack android
+        height: 200,
+        fontSize: 14,
+        color: '#333',
+    },
+
+    RegisterButton: {
+        color: '#E5ECE8',
+    },
     
 });
-

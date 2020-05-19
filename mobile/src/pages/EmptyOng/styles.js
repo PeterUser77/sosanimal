@@ -41,7 +41,7 @@ export default StyleSheet.create({
         flex: 1
     },
 
-    descriptiontext: {
+    descriptionText: {
         fontSize: 14, 
         color: '#474a51',
     },

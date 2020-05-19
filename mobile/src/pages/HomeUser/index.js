@@ -4,8 +4,8 @@ import {
     View,
     FlatList,
     TouchableOpacity,
-    AsyncStorage
-} from 'react-native'
+    AsyncStorage,
+} from 'react-native';
 import styles from './styles';
 import global from '../../global';
 
@@ -13,7 +13,7 @@ import global from '../../global';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 
-export default function Home() {
+export default function HomeUser() {
     const navigation = useNavigation();
     const route = useRoute();
     const KEY_FIST_NAME = 'KEY_FIRST_NAME';
@@ -49,25 +49,37 @@ export default function Home() {
         navigation.navigate('Detail');
     }
 
+    function navigateToHomeOng() {
+        navigation.navigate('HomeOng');
+    }
+
+    function navigateToAuth() {
+        navigation.navigate('Auth');
+    }
+
+    // function navigateToUserProfile() {
+    //     navigation.navigate('UserProfile');
+    // }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
 
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToHome()}>
-                    <Text style={global.textButton}> ONG </Text>
+                    onPress={() => navigateToHomeOng()}>
+                    <Text style={global.textButton}> Ong </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToRegister()}>
+                    onPress={() => navigateToUserProfile()}>
                     <Text style={global.textButton}> Perfil </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToRegister()}>
+                    onPress={() => navigateToAuth()}>
                     <Text style={global.textButton}> Sair </Text>
                 </TouchableOpacity>
             </View>
@@ -77,7 +89,7 @@ export default function Home() {
                 </Text>
             </View>
 
-    <Text style={styles.title}>Bem vindo(a), {userName}!</Text>
+            <Text style={styles.title}>Bem vindo(a), {userName}!</Text>
             <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
 
             <View style={styles.incidentsList}>
@@ -87,6 +99,7 @@ export default function Home() {
                     showsVerticalScrollIndicator={false}
                     onEndReached={loadIncidents}
                     onEndReachedThreshold={0.5}
+
                     renderItem={({ item: incident }) => (
                         <View style={styles.incident}>
                             <Text style={styles.incidentTextTitle}>ONG:</Text>
@@ -107,13 +120,9 @@ export default function Home() {
                                 <Text style={styles.detailButtonText}>+ Detalhes</Text>
                             </TouchableOpacity>
                         </View>
-
                     )}
                 />
             </View>
-
-
-
         </View>
     );
 

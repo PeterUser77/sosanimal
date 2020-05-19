@@ -10,6 +10,7 @@ export default StyleSheet.create({
     container: {
         flex: 1, 
     },
+
     header:{
         
         alignItems: 'center',
@@ -17,6 +18,7 @@ export default StyleSheet.create({
         flexDirection:'row',
         
     },
+
     botao: {
         flex: 1,
         height: 50,
@@ -25,27 +27,28 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
     botaoText: {
         fontSize: 15,
         fontWeight: 'bold',
         color: '#ffff',
     },
 
-    totalizaCasos:{
+    totalIncidents:{
         padding: 10,
         width:'100%',
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 2,
         borderColor: "#C9C9C3",
     },
 
-    totalizaCasosText:{
+    totalIncidentsText:{
         fontSize: 18,
         fontWeight: 'bold',
        
     }, 
+
     incidentsList:{
         flex: 1, 
     }, 
@@ -68,20 +71,23 @@ export default StyleSheet.create({
         fontSize: 15,
         marginBottom: 10,
     },
+
     detailsButton: {
         alignItems: 'flex-end',
     },
+
     detailButtonText:{
         color: '#e02041',
         fontSize: 10,
         fontWeight: 'bold',
-        
     },
+
     incident2: { 
         flex:1,
          flexDirection:'row', 
         justifyContent: 'space-between',
      },
+
      botaoEnd: {
        width:'25%',
         height: 30,
@@ -91,7 +97,5 @@ export default StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 5,
     }
-
-    
 });
 

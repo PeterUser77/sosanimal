@@ -8,11 +8,9 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
     
     container: {
-        flex: 1, 
-        backgroundColor: '#E5ECE8',        
+        flex: 1,
     },
     header:{
-        
         alignItems: 'center',
         backgroundColor: '#E5ECE8',
         flexDirection:'row',
@@ -25,64 +23,58 @@ export default StyleSheet.create({
         marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
-
     },
-
     botaoText: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#ffff',
     },
 
-    title : {
-        marginTop: 20, 
-        padding: 15
-
-    },
-
-    titletext: {
-        fontSize: 20,  
-        fontWeight: 'bold',
-        color: '#FF8C00'
-
-    },
-
-    description: {
-        padding: 15,
-    },
-
-    descriptiontext: {
-        fontSize: 14, 
-        color: '#474a51',
-    },
-
-    buttoncontainer:{
-        flex: 1, 
+    totalIncidents:{
+        padding: 10,
+        width:'100%',
+        height: 50,
         alignItems: 'center',
-        justifyContent: 'center'   
+        justifyContent: 'center',
+        borderColor: "#C9C9C3",
     },
 
-    button:{
-        padding: 24,
-        width:'50%',
-        borderRadius: 10,
-        backgroundColor: '#FFF',
-        marginTop: 24,      
+    totalIncidentsText:{
+        fontSize: 16,
+        fontWeight: 'bold',
+       
+    }, 
+    incidentsList:{
+        flex: 1, 
     }, 
 
-    detailsButton: {
-        alignItems: 'center',
-        justifyContent: 'center'
+    incident:{
+        padding: 24,
+        borderRadius: 10,
+        backgroundColor: '#FFF',
+        marginBottom: 10,
+    }, 
+
+    incidentTextTitle:{
+        fontSize:14, 
+        color: '#FF8C00',
+        fontWeight: 'bold',
         
-    
+    }, 
+    incidentTextDescription: {
+        marginTop: 8,
+        fontSize: 15,
+        marginBottom: 10,
     },
 
+    detailButton: {
+        alignItems: 'flex-end',
+    },
     detailButtonText:{
         color: '#FF8C00',
         fontSize: 15,
         fontWeight: 'bold',
         
-
     }
     
 });

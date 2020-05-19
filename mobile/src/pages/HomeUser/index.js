@@ -4,8 +4,8 @@ import {
     View,
     FlatList,
     TouchableOpacity,
-    AsyncStorage
-} from 'react-native'
+    AsyncStorage,
+} from 'react-native';
 import styles from './styles';
 import global from '../../global';
 
@@ -49,84 +49,81 @@ export default function HomeUser() {
         navigation.navigate('Detail');
     }
 
-    function navigateToHomeOng()
-    navigation.navigate('HomeOng');
+    function navigateToHomeOng() {
+        navigation.navigate('HomeOng');
+    }
+
+    function navigateToAuth() {
+        navigation.navigate('Auth');
+    }
+
+    // function navigateToUserProfile() {
+    //     navigation.navigate('UserProfile');
+    // }
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.header}>
+
+                <TouchableOpacity
+                    style={global.menuButton}
+                    onPress={() => navigateToHomeOng()}>
+                    <Text style={global.textButton}> Ong </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={global.menuButton}
+                    onPress={() => navigateToUserProfile()}>
+                    <Text style={global.textButton}> Perfil </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={global.menuButton}
+                    onPress={() => navigateToAuth()}>
+                    <Text style={global.textButton}> Sair </Text>
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.totalIncidents}>
+                <Text style={styles.headerText}>Total de <Text style={styles.headerTextBold}>{total} casos</Text>
+                </Text>
+            </View>
+
+            <Text style={styles.title}>Bem vindo(a), {userName}!</Text>
+            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
+
+            <View style={styles.incidentsList}>
+                <FlatList
+                    data={incidents}
+                    keyExtractor={incident => String(incident.cdIncident)}
+                    showsVerticalScrollIndicator={false}
+                    onEndReached={loadIncidents}
+                    onEndReachedThreshold={0.5}
+
+                    renderItem={({ item: incident }) => (
+                        <View style={styles.incident}>
+                            <Text style={styles.incidentTextTitle}>ONG:</Text>
+                            <Text style={styles.incidentTextDescription}>{incident.name}</Text>
+
+                            <Text style={styles.incidentTextTitle}>CASO:</Text>
+                            <Text style={styles.incidentTextDescription}>{incident.title}</Text>
+
+                            <Text style={styles.incidentTextTitle}>VALOR:</Text>
+                            <Text style={styles.incidentTextDescription}>{Intl.NumberFormat('pt-BR',
+                                {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(incident.value)}
+                            </Text>
+
+                            <TouchableOpacity style={styles.detailButton} onPress={() => { navigateToDetail() }}>
+                                <Text style={styles.detailButtonText}>+ Detalhes</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
+                />
+            </View>
+        </View>
+    );
 
 }
-
-function navigateToAuth() {
-    navigation.navigate('Auth');
-}
-
-// function navigateToProfile() {
-//     navigation.navigate('UserProfile');
-// }
-
-return (
-    <View style={styles.container}>
-        <View style={styles.header}>
-
-            <TouchableOpacity
-                style={global.menuButton}
-                onPress={() => navigateToHomeOng()}>
-                <Text style={global.textButton}> Ong </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={global.menuButton}
-                onPress={() => navigateToProfile()}>
-                <Text style={global.textButton}> Perfil </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={global.menuButton}
-                onPress={() => navigateToAuth()}>
-                <Text style={global.textButton}> Sair </Text>
-            </TouchableOpacity>
-        </View>
-
-        <View style={styles.totalIncidents}>
-            <Text style={styles.headerText}>Total de <Text style={styles.headerTextBold}>{total} casos</Text>
-            </Text>
-        </View>
-
-        <Text style={styles.title}>Bem vindo(a), {userName}!</Text>
-        <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
-
-        <View style={styles.incidentsList}>
-            <FlatList
-                data={incidents}
-                keyExtractor={incident => String(incident.cdIncident)}
-                showsVerticalScrollIndicator={false}
-                onEndReached={loadIncidents}
-                onEndReachedThreshold={0.5}
-                renderItem={({ item: incident }) => (
-
-                    <View style={styles.incident}>
-                        <Text style={styles.incidentTextTitle}>ONG:</Text>
-                        <Text style={styles.incidentTextDescription}>{incident.name}</Text>
-
-                        <Text style={styles.incidentTextTitle}>CASO:</Text>
-                        <Text style={styles.incidentTextDescription}>{incident.title}</Text>
-
-                        <Text style={styles.incidentTextTitle}>VALOR:</Text>
-                        <Text style={styles.incidentTextDescription}>{Intl.NumberFormat('pt-BR',
-                            {
-                                style: 'currency',
-                                currency: 'BRL'
-                            }).format(incident.value)}
-                        </Text>
-
-                        <TouchableOpacity style={styles.detailButton} onPress={() => { navigateToDetail() }}>
-                            <Text style={styles.detailButtonText}>+ Detalhes</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-            />
-        </View>
-
-
-
-    </View>
-);
-

@@ -15,8 +15,8 @@ import { useNavigation } from '@react-navigation/native';
 export default function Home() {
     const navigation = useNavigation();
 
-    function navigateToIncident() {
-        navigation.navigate('Incident');
+    function navigateToRegisterIncident() {
+        navigation.navigate('RegisterIncident');
     }
 
     function navigateToHomeOng() {
@@ -28,7 +28,7 @@ export default function Home() {
             <View style={styles.header}>
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToIncident()}>
+                    onPress={() => navigateToRegisterIncident()}>
 
                     <Text style={styles.botaoText}> Cadastrar Caso </Text>
                 </TouchableOpacity>

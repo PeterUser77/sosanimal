@@ -11,7 +11,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#E5ECE8',
         flexDirection: 'row',
-
     },
 
     botao: {

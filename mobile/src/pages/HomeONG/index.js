@@ -3,9 +3,9 @@ import {
     Text,
     View,
     TouchableOpacity
-} from 'react-native'
+} from 'react-native';
 
-import styles from '../HomeOng/styles';
+import styles from './styles';
 import global from '../../global';
 
 import { useNavigation } from '@react-navigation/native';
@@ -13,14 +13,19 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export default function HomeOng() {
+
     const navigation = useNavigation();
 
-    function navigateToRegisterOngIncident(){
-        navigation.navigate('OngIncidents');
+    function navigateToRegisterOngIncident() {
+        navigation.navigate('RegisterIncident');
     }
 
     function navigateToHomeUser() {
         navigation.navigate('HomeUser');
+    }
+
+    function navigateToOngProfile() {
+        navigation.navigate('OngProfile');
     }
 
     return (
@@ -34,7 +39,7 @@ export default function HomeOng() {
 
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToProfile()}>
+                    onPress={() => navigateToOngProfile()}>
                     <Text style={styles.botaoText}> Perfil </Text>
                 </TouchableOpacity>
 

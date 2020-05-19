@@ -21,9 +21,10 @@ export default function Init() {
     function navigateToRegister() {
         navigation.navigate('RegisterUser');
     }
-    
-    return (
 
+    const renderizer = true;
+
+    return (
         <View style={global.container}>
 
             <ImageBackground source={require('../../assets/background-init.jpg')} style={global.backgroundImage}>
@@ -47,11 +48,10 @@ export default function Init() {
                         <Text style={global.textButton}> Registrar </Text>
                     </TouchableOpacity>
 
-                
+
                 </View>
             </ImageBackground>
         </View>
-
     );
 
 }

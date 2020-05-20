@@ -8,4 +8,7 @@ import org.springframework.http.ResponseEntity;
 public interface IncidentController {
     ResponseEntity<Page<Incident>> findIncidentsInProgressByCdOng(Integer cdOng, Integer page);
     void create(RegisterIncidentDTO registerIncidentDTO) throws Exception;
+    void markIncidentAsCanceled(Integer cdIncident) throws Exception;
+    void markIncidentAsCompleted(Integer cdIncident) throws Exception;
+    ResponseEntity<Page<Incident>> findAllPaginated(Integer page);
 }

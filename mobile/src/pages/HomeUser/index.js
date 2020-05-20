@@ -28,24 +28,30 @@ export default function HomeUser() {
     const isOwnOng = route.params.ownOng;
 
     async function loadIncidents() {
-        if (load) {
+        if(load){
             return;
         }
 
-        if (total > 0 && incidents.length == total) {
+        if(total > 0 && incidents.length == total){
 
         }
 
-        setLoad(true);
+        const cdOng = await AsyncStorage.getItem(KEY_CD_ONG);
 
-        const response = await api.get('incidents', {
-            params: { page }
+        setLoad(true);
+        const response = await Api.get('incident', {
+            params: {page}
         });
-        setIncidents([...incidents, ...response.data]);
+
+        setIncidents([...incidents, ...response.data.content]);
         setTotal(response.headers['x-total-count']);
         setPage(page + 1);
         setLoad(false);
     }
+
+    useEffect(() => {
+        loadIncidents();
+    }, []);
 
     function navigateToDetail() {
         navigation.navigate('Detail');
@@ -57,6 +63,7 @@ export default function HomeUser() {
             const cdUser = await AsyncStorage.getItem(KEY_CD_USER);
             console.log(cdUser);
             const res = await Api.get('ong/ongAndTotalIncidentsByCdUser?cdUser=' + cdUser);
+
             await AsyncStorage.setItem(KEY_CD_ONG, res.data.cdOng + "");
 
             navigation.navigate('HomeOng', {'fantasyName':res.data.fantasyName,'total': res.data.total});
@@ -112,7 +119,6 @@ export default function HomeUser() {
                     showsVerticalScrollIndicator={false}
                     onEndReached={loadIncidents}
                     onEndReachedThreshold={0.5}
-
                     renderItem={({ item: incident }) => (
                         <View style={styles.incident}>
                             <Text style={styles.incidentTextTitle}>ONG:</Text>
@@ -122,12 +128,7 @@ export default function HomeUser() {
                             <Text style={styles.incidentTextDescription}>{incident.title}</Text>
 
                             <Text style={styles.incidentTextTitle}>VALOR:</Text>
-                            <Text style={styles.incidentTextDescription}>{Intl.NumberFormat('pt-BR',
-                                {
-                                    style: 'currency',
-                                    currency: 'BRL'
-                                }).format(incident.value)}
-                            </Text>
+                            <Text style={styles.incidentTextDescription}>{incident.value}</Text>
 
                             <TouchableOpacity style={styles.detailButton} onPress={() => { navigateToDetail() }}>
                                 <Text style={styles.detailButtonText}>+ Detalhes</Text>

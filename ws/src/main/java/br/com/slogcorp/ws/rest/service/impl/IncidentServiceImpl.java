@@ -1,18 +1,18 @@
 package br.com.slogcorp.ws.rest.service.impl;
 
-import br.com.slogcorp.ws.rest.enums.StatusEnum;
 import br.com.slogcorp.ws.rest.model.Incident;
 import br.com.slogcorp.ws.rest.model.Ong;
 import br.com.slogcorp.ws.rest.model.Status;
 import br.com.slogcorp.ws.rest.repository.IncidentRepository;
 import br.com.slogcorp.ws.rest.service.IncidentService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import static br.com.slogcorp.ws.rest.enums.StatusEnum.*;
+import static br.com.slogcorp.ws.rest.enums.StatusEnum.IN_PROGRESS;
 
 @Service
 public class IncidentServiceImpl implements IncidentService {
@@ -41,14 +41,32 @@ public class IncidentServiceImpl implements IncidentService {
     }
 
     @Override
-    @Transactional
     public void create(Incident incident, Integer cdOng) throws Exception {
         try {
             incident.setOng(new Ong(cdOng));
             incident.setStatus(new Status(IN_PROGRESS.getCdStatus()));
             incidentRepository.save(incident);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             throw new Exception("Ocorreu um erro ao tentar cadastrar o caso!");
         }
+    }
+
+    @Override
+    public void updateStatusIncident(Integer cdIncident, Integer cdStatus) throws Exception {
+        try {
+            incidentRepository.updateStatusByCdIncident(cdIncident, cdStatus);
+        } catch (Exception ex) {
+            throw new Exception("Ocorreu um erro ao tentar atualizar o status do caso.");
+        }
+    }
+
+    @Override
+    public ResponseEntity<Page<Incident>> findAll(Integer page) {
+        long total = incidentRepository.count();
+        return ResponseEntity.ok().header("X-total-count", String.valueOf(total))
+                .body((total == 0) ? Page.empty() : incidentRepository.findAll(
+                        PageRequest.of(
+                        page,
+                        pageSize)));
     }
 }

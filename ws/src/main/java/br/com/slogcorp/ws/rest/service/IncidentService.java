@@ -12,4 +12,7 @@ public interface IncidentService {
 
     void create(Incident incident, Integer cdOng) throws Exception;
 
+    void updateStatusIncident(Integer cdIncident, Integer cdStatus) throws Exception;
+
+    ResponseEntity<Page<Incident>> findAll(Integer page);
 }

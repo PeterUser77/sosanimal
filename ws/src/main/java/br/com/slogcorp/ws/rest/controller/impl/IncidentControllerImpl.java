@@ -2,7 +2,6 @@ package br.com.slogcorp.ws.rest.controller.impl;
 
 import br.com.slogcorp.ws.rest.controller.IncidentController;
 import br.com.slogcorp.ws.rest.dto.RegisterIncidentDTO;
-import br.com.slogcorp.ws.rest.enums.StatusEnum;
 import br.com.slogcorp.ws.rest.model.Incident;
 import br.com.slogcorp.ws.rest.service.IncidentService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,10 +24,10 @@ public class IncidentControllerImpl implements IncidentController {
     @Override
     @GetMapping("/findInProgressByCdOng")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    public ResponseEntity<Page<Incident>> findIncidentsInProgressByCdOng(@RequestParam (value = "cdOng") Integer cdOng,
+    public ResponseEntity<Page<Incident>> findIncidentsInProgressByCdOng(@RequestParam(value = "cdOng") Integer cdOng,
                                                                          @RequestParam(
-                                                              value = "page",
-                                                              defaultValue = "0") Integer page) {
+                                                                                 value = "page",
+                                                                                 defaultValue = "0") Integer page) {
 
         return incidentService.findByCdOngAndCdStatus(cdOng, IN_PROGRESS.getCdStatus(), page);
     }
@@ -37,5 +36,23 @@ public class IncidentControllerImpl implements IncidentController {
     @PutMapping("/new")
     public void create(@RequestBody RegisterIncidentDTO registerIncidentDTO) throws Exception {
         incidentService.create(registerIncidentDTO.getIncident(), registerIncidentDTO.getCdOng());
+    }
+
+    @Override
+    @GetMapping("/markIncidentAsCanceled")
+    public void markIncidentAsCanceled(@RequestParam  Integer cdIncident) throws Exception {
+        incidentService.updateStatusIncident(cdIncident, CANCELED.getCdStatus());
+    }
+
+    @Override
+    @GetMapping("/markIncidentAsCompleted")
+    public void markIncidentAsCompleted(@RequestParam  Integer cdIncident) throws Exception {
+        incidentService.updateStatusIncident(cdIncident, COMPLETED.getCdStatus());
+    }
+
+    @Override
+    @GetMapping
+    public ResponseEntity<Page<Incident>> findAllPaginated(@RequestParam Integer page) {
+        return incidentService.findAll(page);
     }
 }

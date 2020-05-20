@@ -1,10 +1,12 @@
 package br.com.slogcorp.ws.rest.service.impl;
 
+import br.com.slogcorp.ws.rest.dto.ProfileUserDTO;
 import br.com.slogcorp.ws.rest.exception.UserException;
 import br.com.slogcorp.ws.rest.model.User;
 import br.com.slogcorp.ws.rest.repository.UserRepository;
 import br.com.slogcorp.ws.rest.service.AddressService;
 import br.com.slogcorp.ws.rest.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -60,6 +62,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByEmailAndPassword(String email, String password) {
         return userRepository.findByEmailAndPassword(email, getEncryptoPassword(password));
+    }
+
+    @Override
+    public ResponseEntity<ProfileUserDTO> findByCdUser(Integer cdUser) {
+        Optional<User> user = userRepository.findById(cdUser);
+        return ResponseEntity.ok(ProfileUserDTO.builder()
+                .firstName(user.get().getFirstName())
+                .lastName(user.get().getLastName())
+                .birthDate(user.get().getBirthDate())
+                .email(user.get().getEmail())
+                .phone(user.get().getPhone())
+                .document(user.get().getDocument())
+                .cep(user.get().getAddress().getCep())
+                .state(user.get().getAddress().getState())
+                .city(user.get().getAddress().getCity())
+                .publicPlace(user.get().getAddress().getPublicPlace())
+                .neighborhood(user.get().getAddress().getNeighborhood())
+                .complement(user.get().getAddress().getComplement())
+                .number(user.get().getAddress().getNumber()).build());
     }
 
     private String getEncryptoPassword(String password) {

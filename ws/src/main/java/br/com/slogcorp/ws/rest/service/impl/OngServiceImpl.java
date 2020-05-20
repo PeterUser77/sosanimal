@@ -1,6 +1,7 @@
 package br.com.slogcorp.ws.rest.service.impl;
 
 import br.com.slogcorp.ws.rest.dto.OngHomeDTO;
+import br.com.slogcorp.ws.rest.dto.ProfileOngDTO;
 import br.com.slogcorp.ws.rest.exception.OngException;
 import br.com.slogcorp.ws.rest.model.Address;
 import br.com.slogcorp.ws.rest.model.Ong;
@@ -9,6 +10,7 @@ import br.com.slogcorp.ws.rest.repository.OngRepository;
 import br.com.slogcorp.ws.rest.service.AddressService;
 import br.com.slogcorp.ws.rest.service.IncidentService;
 import br.com.slogcorp.ws.rest.service.OngService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -55,6 +57,26 @@ public class OngServiceImpl implements OngService {
         ongHomeDTO.setTotal(incidentService.count(ong.get().getCdOng()));
 
         return ongHomeDTO;
+    }
+
+    @Override
+    public ResponseEntity<ProfileOngDTO> findByCdOng(Integer cdOng) {
+        Optional<Ong> ong = ongRepository.findById(cdOng);
+        Optional<Address> address = addressService.findById(ong.get().getAddress().getCdAddress());
+
+        return ResponseEntity.ok(ProfileOngDTO.builder()
+                .name(ong.get().getName())
+                .fantasyName(ong.get().getFantasyName())
+                .email(ong.get().getEmail())
+                .phone(ong.get().getPhone())
+                .document(ong.get().getDocument())
+                .cep(address.get().getCep())
+                .city(address.get().getCity())
+                .state(address.get().getState())
+                .neighborhood(address.get().getNeighborhood())
+                .publicPlace(address.get().getPublicPlace())
+                .complement(address.get().getComplement())
+                .number(address.get().getNumber()).build());
     }
 
     public void validateOng(Ong ong) throws OngException {

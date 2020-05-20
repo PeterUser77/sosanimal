@@ -53,6 +53,12 @@ public class IncidentControllerImpl implements IncidentController {
     @Override
     @GetMapping
     public ResponseEntity<Page<Incident>> findAllPaginated(@RequestParam Integer page) {
-        return incidentService.findAll(page);
+        return incidentService.findAllInProgress(page);
+    }
+
+    @Override
+    @PostMapping("/edit")
+    public void edit(@RequestBody Incident incident) {
+        incidentService.update(incident);
     }
 }

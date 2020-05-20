@@ -18,7 +18,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ADDRESS")
-    private Integer cdAdress;
+    private Integer cdAddress;
 
     @Setter
     @Column(name = "PUBLIC_PLACE")
@@ -42,5 +42,8 @@ public class Address {
     @Setter
     @Column(name = "CEP")
     private String cep;
+
+    @Column(name = "NUMBER")
+    private Integer number;
 
 }

@@ -24,6 +24,7 @@ export default function HomeUser() {
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(0);
     const [load, setLoad] = useState(false);
+
     const userName = route.params.userName;
     const isOwnOng = route.params.ownOng;
 
@@ -57,7 +58,6 @@ export default function HomeUser() {
 
         if (isOwnOng) {
             const cdUser = await AsyncStorage.getItem(KEY_CD_USER);
-            console.log(cdUser);
             const res = await Api.get('ong/ongAndTotalIncidentsByCdUser?cdUser=' + cdUser);
 
             await AsyncStorage.setItem(KEY_CD_ONG, res.data.cdOng + "");
@@ -69,16 +69,21 @@ export default function HomeUser() {
         }
     }
 
-    function navigateToAuth() {
-        navigation.navigate('Auth');
+    async function logout() {
+        await AsyncStorage.clear();
+        navigation.goBack();
     }
 
-    function navigateToDetail() {
-        navigation.navigate('Detail');
+    function navigateToDetail(incident) {
+        navigation.navigate('Detail', {incident});
     }
 
-    function navigateToProfileUser() {
-        navigation.navigate('ProfileUser');
+    async function navigateToProfileUser() {
+        const cdUser = await AsyncStorage.getItem(KEY_CD_USER);
+
+        const res = await Api.post(`user/findByCdUser?cdUser=${cdUser}`);
+
+        navigation.navigate('ProfileUser',res.data);
     }
 
     return (
@@ -99,7 +104,7 @@ export default function HomeUser() {
 
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToAuth()}>
+                    onPress={() => logout()}>
                     <Text style={global.textButton}> Sair </Text>
                 </TouchableOpacity>
             </View>
@@ -126,7 +131,7 @@ export default function HomeUser() {
                     renderItem={({ item: incident }) => (
                         <View style={styles.incident}>
                             <Text style={styles.incidentTextTitle}>Ong:</Text>
-                            <Text style={styles.incidentTextDescription}>{incident.name}</Text>
+                            <Text style={styles.incidentTextDescription}>{incident.ong.name}</Text>
 
                             <Text style={styles.incidentTextTitle}>Caso:</Text>
                             <Text style={styles.incidentTextDescription}>{incident.title}</Text>
@@ -134,7 +139,7 @@ export default function HomeUser() {
                             <Text style={styles.incidentTextTitle}>Valor:</Text>
                             <Text style={styles.incidentTextDescription}>{incident.value}</Text>
 
-                            <TouchableOpacity style={styles.detailButton} onPress={() => { navigateToDetail() }}>
+                            <TouchableOpacity style={styles.detailButton} onPress={() => { navigateToDetail(incident) }}>
                                 <Text style={styles.detailButtonText}>+ Detalhes</Text>
                             </TouchableOpacity>
                         </View>

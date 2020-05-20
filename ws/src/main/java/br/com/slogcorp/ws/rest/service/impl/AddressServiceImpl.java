@@ -61,4 +61,9 @@ public class AddressServiceImpl implements AddressService {
             throw new AddressException("CEP Inválido!");
         }
     }
+
+    @Override
+    public Optional<Address> findById(Integer cdAddress) {
+        return addressRepository.findById(cdAddress);
+    }
 }

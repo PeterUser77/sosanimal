@@ -6,10 +6,7 @@ import br.com.slogcorp.ws.rest.model.Status;
 import br.com.slogcorp.ws.rest.repository.IncidentRepository;
 import br.com.slogcorp.ws.rest.service.IncidentService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +24,12 @@ public class IncidentServiceImpl implements IncidentService {
 
     @Override
     public Integer count(Integer cdOng) {
-        return incidentRepository.countIncidentsByCdOng(cdOng);
+        return incidentRepository.countIncidentsByCdOngANdStatus(cdOng, IN_PROGRESS.getCdStatus());
     }
 
     @Override
     public ResponseEntity<Page<Incident>> findByCdOngAndCdStatus(Integer cdOng, Integer cdStatus, Integer page) {
-        Integer total = incidentRepository.countIncidentsByCdOng(cdOng);
+        Integer total = incidentRepository.countIncidentsByCdOngANdStatus(cdOng, IN_PROGRESS.getCdStatus());
 
         return ResponseEntity.ok().header("X-total-count", String.valueOf(total))
                 .body((total == 0) ? Page.empty() : incidentRepository.findByCdOngAndStatus(cdOng, cdStatus, PageRequest.of(
@@ -55,20 +52,27 @@ public class IncidentServiceImpl implements IncidentService {
     @Override
     public void updateStatusIncident(Integer cdIncident, Integer cdStatus) throws Exception {
         try {
-            incidentRepository.updateStatusByCdIncident(cdIncident, cdStatus);
+            incidentRepository.updateStatusByCdIncident(new Status(cdStatus), cdIncident);
         } catch (Exception ex) {
             throw new Exception("Ocorreu um erro ao tentar atualizar o status do caso.");
         }
     }
 
     @Override
-    public ResponseEntity<Page<Incident>> findAll(Integer page) {
-        long total = incidentRepository.count();
+    public ResponseEntity<Page<Incident>> findAllInProgress(Integer page) {
+        long total = incidentRepository.countIncidentsInProgress(IN_PROGRESS.getCdStatus());
 
         return ResponseEntity.ok().header("X-total-count", String.valueOf(total))
-                .body((total == 0) ? Page.empty() : incidentRepository.findAllFetchOng(
-                        PageRequest.of(
-                        page,
-                        pageSize)));
+                .body((total == 0) ? Page.empty() :
+                                     incidentRepository.findAllFetchOng(IN_PROGRESS.getCdStatus(),
+                                                                        PageRequest.of(
+                                                                                        page,
+                                                                                        pageSize)));
+    }
+
+    @Override
+    public void update(Incident incident) {
+        incidentRepository.update(incident.getTitle(), incident.getDescription(),
+                incident.getValue(), incident.getCdIncident());
     }
 }

@@ -21,7 +21,7 @@ export default StyleSheet.create({
         color: '#737380',
     },
 
-    incidentText: {
+    titleProfile: {
         fontWeight: 'bold',
     },
 
@@ -35,10 +35,10 @@ export default StyleSheet.create({
     
     title: {
         fontSize: 30,
-        marginBottom: 16,
-        marginTop: 48,
+        marginBottom: 5,
+        marginTop: 0,
         color: '#13131a',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
 
     description: {

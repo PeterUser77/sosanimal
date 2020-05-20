@@ -1,5 +1,6 @@
 package br.com.slogcorp.ws.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,11 +38,13 @@ public class Ong {
     private String phone;
 
     @Setter
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CD_ADRESS", referencedColumnName = "ID_ADDRESS")
     private Address address;
 
     @Setter
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "CD_USER", referencedColumnName = "ID_USER")
     private User user;

@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Text,
     View,
     FlatList,
     TouchableOpacity,
     AsyncStorage,
+    Alert,
 } from 'react-native'
 import styles from './styles';
 import global from '../../global';
 import Api from '../../service/Api';
 
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 export default function Home() {
@@ -28,24 +29,23 @@ export default function Home() {
     }
 
     function navigateToHomeOng() {
-        navigation.navigate('HomeOng');
+        navigation.navigate('HomeOng', { "total": total });
     }
-
-
+    
     async function loadIncidents() {
-        if(load){
+        if (load) {
             return;
         }
 
-        if(total > 0 && incidents.length == total){
+        if (total > 0 && incidents.length == total) {
 
         }
 
         const cdOng = await AsyncStorage.getItem(KEY_CD_ONG);
 
         setLoad(true);
-        const response = await Api.get('incident/findInProgressByCdOng?cdOng='+ cdOng, {
-            params: {page}
+        const response = await Api.get('incident/findInProgressByCdOng?cdOng=' + cdOng, {
+            params: { page }
         });
 
         setIncidents([...incidents, ...response.data.content]);
@@ -58,7 +58,58 @@ export default function Home() {
         loadIncidents();
     }, []);
 
+    async function completed(cdIncident) {
+
+        Alert.alert(
+            "Concluir caso",
+            "Tem certeza que deseja concluir o caso?",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => { },
+                    style: "cancel"
+                },
+                {
+                    text: "Confirmar", onPress: () => markIncidentAsCompleted(cdIncident)}
+            ],
+            { cancelable: false }
+        );
+
+    }
+
+    async function canceled(cdIncident) {
+
+        Alert.alert(
+            "Cancelar caso",
+            "Tem certeza que deseja cancelar o caso?",
+            [
+                {
+                    text: "Cancelar",
+                    onPress: () => { },
+                    style: "cancel"
+                },
+                {
+                    text: "Confirmar", onPress: () => markIncidentAsCanceled(cdIncident)}
+            ],
+            { cancelable: false }
+        );
+
+    }
+
+    function edit(incident){
+        navigation.navigate('RegisterIncident', incident)
+    }
+
+    async function markIncidentAsCanceled(cdIncident){
+        await Api.get('incident/markIncidentAsCanceled?cdIncident=' + cdIncident);
+    }
+
+    async function markIncidentAsCompleted(cdIncident){
+        await Api.get('incident/markIncidentAsCompleted?cdIncident=' + cdIncident);
+    }
+
     
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -66,7 +117,7 @@ export default function Home() {
                     style={global.menuButton}
                     onPress={() => navigateToRegisterIncident()}>
 
-                    <Text style={styles.botaoText}> Cadastrar Caso </Text>
+                    <Text style={styles.botaoText}> Cadastrar </Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -81,6 +132,7 @@ export default function Home() {
                 <Text style={styles.totalIncidentsText}> Total de Casos ativos: {total} </Text>
             </View>
 
+
             <View style={styles.incidentsList}>
                 <FlatList
                     data={incidents}
@@ -90,7 +142,8 @@ export default function Home() {
                     onEndReachedThreshold={0.5}
                     renderItem={({ item: incident }) => (
                         <View style={styles.incident}>
-                            <Text style={styles.incidentProperty}>Titulo: {incident.title}</Text>
+                            <Text style={styles.incidentProperty}>Titulo:</Text>
+                            <Text style={styles.incidentValue}>{incident.title}</Text>
 
                             <Text style={styles.incidentProperty}>Caso:</Text>
                             <Text style={styles.incidentValue}>{incident.description}</Text>
@@ -102,19 +155,14 @@ export default function Home() {
 
                                 <TouchableOpacity
                                     style={styles.botaoEnd}
-                                    onPress={() => navigateToAuth()}>
+                                    onPress={() => completed(incident.cdIncident)}>
                                     <Text style={styles.botaoText}> Concluir </Text>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity
-                                    style={styles.botaoEnd}
-                                    onPress={() => navigateToAuth()}>
-                                    <Text style={styles.botaoText}> Editar </Text>
-                                </TouchableOpacity>
 
                                 <TouchableOpacity
                                     style={styles.botaoEnd}
-                                    onPress={() => navigateToAuth()}>
+                                    onPress={() => canceled()}>
                                     <Text style={styles.botaoText}> Cancelar </Text>
                                 </TouchableOpacity>
                             </View>

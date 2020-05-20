@@ -11,4 +11,5 @@ public interface IncidentController {
     void markIncidentAsCanceled(Integer cdIncident) throws Exception;
     void markIncidentAsCompleted(Integer cdIncident) throws Exception;
     ResponseEntity<Page<Incident>> findAllPaginated(Integer page);
+    void edit(Incident incident);
 }

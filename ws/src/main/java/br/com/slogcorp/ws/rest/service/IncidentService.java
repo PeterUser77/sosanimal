@@ -14,5 +14,7 @@ public interface IncidentService {
 
     void updateStatusIncident(Integer cdIncident, Integer cdStatus) throws Exception;
 
-    ResponseEntity<Page<Incident>> findAll(Integer page);
+    ResponseEntity<Page<Incident>> findAllInProgress(Integer page);
+
+    void update(Incident incident);
 }

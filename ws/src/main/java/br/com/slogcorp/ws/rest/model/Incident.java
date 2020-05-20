@@ -29,14 +29,13 @@ public class Incident {
     @Column(name = "VALUE")
     private BigDecimal value;
 
-    @JsonIgnore
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "CD_ONG", referencedColumnName = "ID_ONG")
     private Ong ong;
 
-    @JsonIgnore
     @Setter
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "CD_STATUS", referencedColumnName = "ID_STATUS")
     private Status status;

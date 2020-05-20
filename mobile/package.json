@@ -18,6 +18,7 @@
     "expo": "37.0.3",
     "expo-constants": "9.0.0",
     "expo-crypto": "8.1.0",
+    "expo-mail-composer": "^8.1.0",
     "react": "16.9.0",
     "react-datepicker": "^2.15.0",
     "react-dom": "16.9.0",

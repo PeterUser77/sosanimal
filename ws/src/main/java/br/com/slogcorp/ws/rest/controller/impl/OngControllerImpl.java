@@ -3,9 +3,11 @@ package br.com.slogcorp.ws.rest.controller.impl;
 import br.com.slogcorp.ws.rest.controller.OngController;
 import br.com.slogcorp.ws.rest.dto.OngDTO;
 import br.com.slogcorp.ws.rest.dto.OngHomeDTO;
+import br.com.slogcorp.ws.rest.dto.ProfileOngDTO;
 import br.com.slogcorp.ws.rest.exception.OngException;
 import br.com.slogcorp.ws.rest.model.Ong;
 import br.com.slogcorp.ws.rest.service.OngService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -34,6 +36,12 @@ public class OngControllerImpl implements OngController {
         ongHomeDTO.setFantasyName(ong.get().getFantasyName());
 
         return ongService.ongAndTotalIncidents(cdUser);
+    }
+
+    @Override
+    @PostMapping("/findByCdOng")
+    public ResponseEntity<ProfileOngDTO> findByCdOng(@RequestParam Integer cdOng) {
+        return ongService.findByCdOng(cdOng);
     }
 
 

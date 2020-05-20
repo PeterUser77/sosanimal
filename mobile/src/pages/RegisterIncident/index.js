@@ -60,40 +60,31 @@ export default function RegisterIncident() {
                 </TouchableOpacity>
             </View>
 
+                <Text style={styles.title}>Cadastro de Caso</Text>
+
             <Form ref={formRegisterIncident} onSubmit={handleSubmit}>
 
-                <View style={global.container}>
-                    <Text style={styles.title}>Cadastrar Caso</Text>
-                </View>
-
                 <View style={styles.description}>
+
                     <Input
                         placeholder="Título"
                         name="title"
                         style={global.input}
                     />
-                </View>
 
-                <View style={styles.description}>
                     <TextInputArea
                         containerStyle={styles.textareaContainer}
-                        style={styles.textButton}
-                        placeholder="Digite a descrição"
+                        style={styles.textAreaText}
+                        placeholder="Descrição do Caso"
                         name="description"
                     />
-                </View>
 
-                <View style={styles.description}>
                     <Input
-
                         keyboardType="number-pad"
                         placeholder="Valor para doação em R$"
                         name="value"
                         style={global.input}
                     />
-                </View>
-
-                <View style={global.container}>
                     <TouchableOpacity
                         style={global.button}
                         onPress={() => { formRegisterIncident.current.submitForm() }}>

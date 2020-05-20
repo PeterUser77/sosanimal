@@ -5,7 +5,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     
     container: {
-        flex: 1, 
+        flex: 1,
+        alignItems: 'center',
         backgroundColor: '#E5ECE8',        
     },
     
@@ -36,6 +37,9 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 30,
         color: '#696969',
+        marginTop: 12,
+        marginBottom: 12,
+        marginLeft: 20,
       },
     
     titletext: {
@@ -45,17 +49,11 @@ export default StyleSheet.create({
     },
 
     description: {
+        fontSize: 20,  
         padding: 15,
-        flexDirection:'row',
         borderRadius: 10,
-        marginTop: -20,
-        marginBottom: -15,
     },
 
-    descriptiontext: {
-        fontSize: 14, 
-        color: '#474a51',
-    },
 
     buttoncontainer:{
         flex: 1, 
@@ -87,11 +85,12 @@ export default StyleSheet.create({
     },
 
     textareaContainer: {
+        width: 330,
         height: 200,
         padding: 5,
         backgroundColor: '#FFF',
         borderRadius: 10,
-
+        marginTop: 7,
     },
 
     textarea: {
@@ -104,5 +103,7 @@ export default StyleSheet.create({
     RegisterButton: {
         color: '#E5ECE8',
     },
-    
+    textAreaText:{  
+        fontWeight: 'bold',
+    },
 });

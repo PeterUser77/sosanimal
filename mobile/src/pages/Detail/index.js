@@ -10,7 +10,6 @@ export default function EmptyOng() {
     return (
         <View style={styles.container}>
             
-
         </View>
     );
 }

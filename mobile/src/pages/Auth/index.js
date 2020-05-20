@@ -52,9 +52,7 @@ export default function Auth() {
     try {
       valideEmail(data.email);
       validePassword(data.password);
-
       const password = await Crypto(data.password);
-
       const response = await Api.post('authentication/new',
         {
           "email": data.email,

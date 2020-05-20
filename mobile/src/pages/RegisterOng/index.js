@@ -17,8 +17,8 @@ import styles from './styles';
 import { Form } from '@unform/mobile';
 import { Scope } from '@unform/core';
 import Api from '../../service/Api';
-import { validateCNPJ } from '../../utils/DocumentUtils';
-import { validatePhone } from '../../utils/PhoneUtils';
+// import { validateCNPJ } from '../../utils/DocumentUtils';
+// import { validatePhone } from '../../utils/PhoneUtils';
 
 
 

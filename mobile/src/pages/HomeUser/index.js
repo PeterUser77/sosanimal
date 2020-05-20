@@ -22,17 +22,17 @@ export default function HomeUser() {
     const KEY_CD_USER = 'KEY_CD_USER';
     const [incidents, setIncidents] = useState([]);
     const [total, setTotal] = useState(0);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [load, setLoad] = useState(false);
     const userName = route.params.userName;
     const isOwnOng = route.params.ownOng;
 
     async function loadIncidents() {
-        if(load){
+        if (load) {
             return;
         }
 
-        if(total > 0 && incidents.length == total){
+        if (total > 0 && incidents.length == total) {
 
         }
 
@@ -40,7 +40,7 @@ export default function HomeUser() {
 
         setLoad(true);
         const response = await Api.get('incident', {
-            params: {page}
+            params: { page }
         });
 
         setIncidents([...incidents, ...response.data.content]);
@@ -58,7 +58,7 @@ export default function HomeUser() {
     }
 
     async function navigateToHomeOng() {
- 
+
         if (isOwnOng) {
             const cdUser = await AsyncStorage.getItem(KEY_CD_USER);
             console.log(cdUser);
@@ -66,7 +66,7 @@ export default function HomeUser() {
 
             await AsyncStorage.setItem(KEY_CD_ONG, res.data.cdOng + "");
 
-            navigation.navigate('HomeOng', {'fantasyName':res.data.fantasyName,'total': res.data.total});
+            navigation.navigate('HomeOng', { 'fantasyName': res.data.fantasyName, 'total': res.data.total });
 
         } else {
             navigation.navigate('EmptyOng');
@@ -83,8 +83,8 @@ export default function HomeUser() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
 
+            <View style={styles.header}>
                 <TouchableOpacity
                     style={global.menuButton}
                     onPress={() => navigateToHomeOng()}>
@@ -104,13 +104,17 @@ export default function HomeUser() {
                 </TouchableOpacity>
             </View>
 
-            <View style={styles.totalIncidents}>
-                <Text style={styles.headerText}>Total de <Text style={styles.headerTextBold}>{total} casos</Text>
+            <View style={styles.containerTotalIncidents}>
+                <Text
+                    style={styles.totalIncidentsText}>
+                    Total de
+                    <Text style={styles.totalIncidentsTextBold}> {total} casos</Text>
                 </Text>
+
+                <Text style={styles.welcomeText}>Bem vindo(a), {userName}!</Text>
+                <Text style={styles.saveDay}>Escolha um dos casos abaixo e salve o dia.</Text>
             </View>
 
-            <Text style={styles.title}>Bem vindo(a), {userName}!</Text>
-            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
 
             <View style={styles.incidentsList}>
                 <FlatList
@@ -121,13 +125,13 @@ export default function HomeUser() {
                     onEndReachedThreshold={0.5}
                     renderItem={({ item: incident }) => (
                         <View style={styles.incident}>
-                            <Text style={styles.incidentTextTitle}>ONG:</Text>
+                            <Text style={styles.incidentTextTitle}>Ong:</Text>
                             <Text style={styles.incidentTextDescription}>{incident.name}</Text>
 
-                            <Text style={styles.incidentTextTitle}>CASO:</Text>
+                            <Text style={styles.incidentTextTitle}>Caso:</Text>
                             <Text style={styles.incidentTextDescription}>{incident.title}</Text>
 
-                            <Text style={styles.incidentTextTitle}>VALOR:</Text>
+                            <Text style={styles.incidentTextTitle}>Valor:</Text>
                             <Text style={styles.incidentTextDescription}>{incident.value}</Text>
 
                             <TouchableOpacity style={styles.detailButton} onPress={() => { navigateToDetail() }}>

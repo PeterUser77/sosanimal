@@ -1,68 +1,67 @@
 import { StyleSheet } from 'react-native';
-import { Platform } from 'react-native';
-import { KeyboardAvoidingView } from 'react-native';
-import Constants from 'expo-constants';
-
-
 
 export default StyleSheet.create({
-    
+
     container: {
         flex: 1,
     },
-    header:{
+
+    header: {
         alignItems: 'center',
         backgroundColor: '#E5ECE8',
-        flexDirection:'row',
-        
+        flexDirection: 'row',
     },
-    botao: {
-        flex: 1,
-        height: 50,
-        backgroundColor: '#FF8C00',
-        marginTop: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    botaoText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#ffff',
-    },
-
-    totalIncidents:{
+    containerTotalIncidents: {
         padding: 10,
-        width:'100%',
-        height: 50,
+        width: '100%',
+        height: 100,
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: "#C9C9C3",
     },
-
-    totalIncidentsText:{
+    welcomeText: {
+        fontSize: 22,
+        fontWeight: 'bold',
+    },
+    saveDay:{
         fontSize: 16,
         fontWeight: 'bold',
-       
-    }, 
-    incidentsList:{
-        flex: 1, 
-    }, 
 
-    incident:{
-        padding: 24,
+    },
+    totalIncidentsText: {
+        fontSize: 16,
+    },
+
+    totalIncidentsTextBold: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+
+    incidentsList: {
+        flex: 1,
+        
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    incident: {
+        padding: 10,
+        width: 330,
         borderRadius: 10,
         backgroundColor: '#FFF',
         marginBottom: 10,
-    }, 
+        
+    },
 
-    incidentTextTitle:{
-        fontSize:14, 
+    incidentTextTitle: {
+        fontSize: 14,
         color: '#FF8C00',
         fontWeight: 'bold',
-        
-    }, 
+
+    },
     incidentTextDescription: {
         marginTop: 8,
+        marginLeft: 7,
         fontSize: 15,
         marginBottom: 10,
     },
@@ -70,12 +69,11 @@ export default StyleSheet.create({
     detailButton: {
         alignItems: 'flex-end',
     },
-    detailButtonText:{
+    detailButtonText: {
         color: '#FF8C00',
         fontSize: 15,
         fontWeight: 'bold',
-        
     }
-    
+
 });
 

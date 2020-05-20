@@ -3,7 +3,7 @@ package br.com.slogcorp.ws.rest.dto;
 import lombok.Getter;
 
 @Getter
-public class AdressDTO {
+public class AddressDTO {
     private String cep;
     private String logradouro;
     private String bairro;

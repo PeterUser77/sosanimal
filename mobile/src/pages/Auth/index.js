@@ -28,17 +28,17 @@ export default function Auth() {
   const KEY_TOKEN = 'KEY_TOKEN';
   const KEY_CD_USER = 'KEY_CD_USER';
 
-  async function validPassword(password) {
+  async function validePassword(password) {
     if (password.length === 0) {
       throw "É necessário inserir a senha para autenticar!";
     }
   }
 
-  async function navigateToHome(userName){
-    navigation.navigate('Home', {userName});
+  async function navigateToHome(userName, ownOng){
+    navigation.navigate('HomeUser', {userName, ownOng});
   }
 
-  function validEmail(email) {
+  function valideEmail(email) {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) === false) {
       throw "E-mail inválido!";
     }
@@ -50,8 +50,9 @@ export default function Auth() {
 
   async function handleSubmit(data) {
     try {
-      validEmail(data.email);
-      validPassword(data.password);
+      valideEmail(data.email);
+      validePassword(data.password);
+
       const password = await Crypto(data.password);
 
       const response = await Api.post('authentication/new',
@@ -62,9 +63,11 @@ export default function Auth() {
 
         setItemAsyncStorage(KEY_TOKEN, response.data.token);
         setItemAsyncStorage(KEY_CD_USER, response.data.cdUser);
-        navigateToHome(response.data.firstName);
+        navigateToHome(response.data.firstName, response.data.ownOng);
+
     } catch (err) {
-      if (err.response.data.message !== null) {
+      console.log(err);
+      if (err.response.data.message) {
         alert(err.response.data.message);
       } else {
         alert("Ocorreu um erro ao tentar autenticar, tente novamente! Se o problema persistir contacte o administrador do sistema.");

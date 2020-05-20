@@ -23,6 +23,7 @@ public class AuthenticationControllerImpl implements AuthenticationController {
     @Override
     @PostMapping("/new")
     public ResponseEntity<AuthenticateDTO> authenticate(@RequestBody UserDTO login) {
+
         return ResponseEntity.accepted()
                 .body(authenticationService.authenticate(login.getEmail(), login.getPassword()));
     }

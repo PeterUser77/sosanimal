@@ -1,6 +1,6 @@
 package br.com.slogcorp.ws.rest.service.impl;
 
-import br.com.slogcorp.ws.rest.dto.AdressDTO;
+import br.com.slogcorp.ws.rest.dto.AddressDTO;
 import br.com.slogcorp.ws.rest.exception.AddressException;
 import br.com.slogcorp.ws.rest.model.Address;
 import br.com.slogcorp.ws.rest.repository.AddressRepository;
@@ -40,7 +40,7 @@ public class AddressServiceImpl implements AddressService {
                 .build();
 
         try {
-            Optional<AdressDTO> addressDTO = Optional.ofNullable(template.getForObject(uri.toUriString(), AdressDTO.class));
+            Optional<AddressDTO> addressDTO = Optional.ofNullable(template.getForObject(uri.toUriString(), AddressDTO.class));
             Address address = new Address();
             if (addressDTO.isPresent() &&
                     (addressDTO.get().getBairro() != null ||

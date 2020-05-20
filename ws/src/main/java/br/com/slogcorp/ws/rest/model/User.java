@@ -2,6 +2,7 @@ package br.com.slogcorp.ws.rest.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,10 +14,17 @@ import java.util.Date;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(schema = "SOSANIMAL", name = "USER")
 public class User {
 
+    public User(Integer cdUser) {
+        this.cdUser = cdUser;
+    }
+
     @Id
+    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_USER")
     private Integer cdUser;
@@ -61,4 +69,5 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CD_ADRESS", referencedColumnName = "ID_ADDRESS")
     private Address address;
+
 }

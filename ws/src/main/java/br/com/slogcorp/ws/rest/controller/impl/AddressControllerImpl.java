@@ -23,6 +23,7 @@ public class AddressControllerImpl implements AddressController {
     @Override
     @GetMapping("/findByCep")
     public ResponseEntity<Address> findByCep(@RequestParam String cep) throws AddressException {
+
         return ResponseEntity.ok(addressService.findByCep(cep));
     }
 }

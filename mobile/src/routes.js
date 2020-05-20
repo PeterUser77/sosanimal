@@ -20,8 +20,8 @@ export default function Routes() {
         <NavigationContainer>
 
             <AppStack.Navigator screenOptions={{ headerShown: false }}>
-                <AppStack.Screen name="OngIncidents" component={OngIncidents} />
                 <AppStack.Screen name="Init" component={Init} />
+                <AppStack.Screen name="OngIncidents" component={OngIncidents} />
                 <AppStack.Screen name="Auth" component={Auth} />
                 <AppStack.Screen name="RegisterUser" component={RegisterUser} />
                 <AppStack.Screen name="RegisterOng" component={RegisterOng} />

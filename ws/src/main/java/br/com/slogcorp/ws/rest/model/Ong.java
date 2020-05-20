@@ -1,9 +1,11 @@
 package br.com.slogcorp.ws.rest.model;
 
+import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
 @Entity
 @Table(schema = "SOSANIMAL", name = "ONG")
 public class Ong {
@@ -34,7 +36,7 @@ public class Ong {
     private Address address;
 
     @Setter
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "CD_USER", referencedColumnName = "ID_USER")
     private User user;
 }

@@ -1,9 +1,13 @@
 package br.com.slogcorp.ws.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Getter
 @Table(schema = "SOSANIMAL", name = "INCIDENT")
 public class Incident {
 
@@ -21,10 +25,12 @@ public class Incident {
     @Column(name = "VALUE")
     private BigDecimal value;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CD_ONG", referencedColumnName = "ID_ONG")
     private Ong ong;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CD_STATUS", referencedColumnName = "ID_STATUS")
     private Status status;

@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(User user) throws UserException{
-        isValidUser(user);
+        validateUser(user);
         user.setAddress(addressService.save(user.getAddress()));
         user.setPassword(user.getPassword());
         userRepository.save(user);
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
         userRepository.updateTokenByCdUser(token, cdUser);
     }
 
-    private void isValidUser(User user) throws UserException{
+    private void validateUser(User user) throws UserException{
 
         if (!isValidCPF(user.getDocument())) {
             throw new UserException("CPF Inválido!");

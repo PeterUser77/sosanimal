@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 import global from '../../global';
-
+import Api from '../../service/Api';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -18,12 +18,14 @@ export default function HomeUser() {
     const route = useRoute();
     const KEY_FIST_NAME = 'KEY_FIRST_NAME';
     const KEY_TOKEN = 'KEY_TOKEN';
+    const KEY_CD_ONG = 'KEY_CD_ONG';
     const KEY_CD_USER = 'KEY_CD_USER';
     const [incidents, setIncidents] = useState([]);
     const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [load, setLoad] = useState(false);
     const userName = route.params.userName;
+    const isOwnOng = route.params.ownOng;
 
     async function loadIncidents() {
         if (load) {
@@ -49,8 +51,19 @@ export default function HomeUser() {
         navigation.navigate('Detail');
     }
 
-    function navigateToHomeOng() {
-        navigation.navigate('HomeOng');
+    async function navigateToHomeOng() {
+ 
+        if (isOwnOng) {
+            const cdUser = await AsyncStorage.getItem(KEY_CD_USER);
+            console.log(cdUser);
+            const res = await Api.get('ong/ongAndTotalIncidentsByCdUser?cdUser=' + cdUser);
+            await AsyncStorage.setItem(KEY_CD_ONG, res.data.cdOng + "");
+
+            navigation.navigate('HomeOng', {'fantasyName':res.data.fantasyName,'total': res.data.total});
+
+        } else {
+            navigation.navigate('EmptyOng');
+        }
     }
 
     function navigateToAuth() {

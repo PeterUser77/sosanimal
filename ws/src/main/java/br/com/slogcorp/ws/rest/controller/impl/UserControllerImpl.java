@@ -19,6 +19,7 @@ public class UserControllerImpl implements UserController {
     @Override
     @PutMapping("/create")
     public void create(@RequestBody User user) throws UserException {
+
         userService.create(user);
     }
 

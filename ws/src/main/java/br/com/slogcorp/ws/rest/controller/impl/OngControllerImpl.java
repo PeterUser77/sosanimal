@@ -1,19 +1,40 @@
 package br.com.slogcorp.ws.rest.controller.impl;
 
 import br.com.slogcorp.ws.rest.controller.OngController;
+import br.com.slogcorp.ws.rest.dto.OngDTO;
+import br.com.slogcorp.ws.rest.dto.OngHomeDTO;
+import br.com.slogcorp.ws.rest.exception.OngException;
 import br.com.slogcorp.ws.rest.model.Ong;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.slogcorp.ws.rest.service.OngService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/ong")
 public class OngControllerImpl implements OngController {
 
-    @Override
-    @PostMapping("/create")
-    public void create(@RequestParam Ong ong) {
+    private final OngService ongService;
 
+    public OngControllerImpl(final OngService ongService) {
+        this.ongService = ongService;
     }
+
+    @Override
+    @PutMapping("/create")
+    public void create(@RequestBody OngDTO ong) throws OngException {
+        ongService.create(ong.getOng(), ong.getCdUser());
+    }
+
+    @Override
+    @GetMapping("/ongAndTotalIncidentsByCdUser")
+    public OngHomeDTO ongAndTotalIncidentsByCdUser(@RequestParam Integer cdUser) {
+        Optional<Ong> ong = ongService.findByCdUser(cdUser);
+        OngHomeDTO ongHomeDTO = new OngHomeDTO();
+        ongHomeDTO.setFantasyName(ong.get().getFantasyName());
+
+        return ongService.ongAndTotalIncidents(cdUser);
+    }
+
+
 }

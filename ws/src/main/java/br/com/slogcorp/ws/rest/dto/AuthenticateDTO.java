@@ -9,4 +9,5 @@ public class AuthenticateDTO {
     private String cdUser;
     private String token;
     private String firstName;
+    private boolean isOwnOng;
 }

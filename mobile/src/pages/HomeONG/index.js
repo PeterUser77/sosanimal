@@ -8,16 +8,17 @@ import {
 import styles from './styles';
 import global from '../../global';
 
-import { useNavigation } from '@react-navigation/native';
-
-
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default function HomeOng() {
 
     const navigation = useNavigation();
+    const route = useRoute();
+    const fantasyName = route.params.fantasyName;
+    const total = route.params.total;
 
-    function navigateToRegisterOngIncident() {
-        navigation.navigate('RegisterIncident');
+    function navigateToOngIncidents() {
+        navigation.navigate('OngIncidents');
     }
 
     function navigateToHomeUser() {
@@ -33,7 +34,7 @@ export default function HomeOng() {
             <View style={styles.header}>
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToRegisterOngIncident()}>
+                    onPress={() => navigateToOngIncidents()}>
                     <Text style={styles.botaoText}> Casos </Text>
                 </TouchableOpacity>
 
@@ -54,11 +55,11 @@ export default function HomeOng() {
             <View style={styles.OngContainer}>
 
                 <View style={styles.totalizaCasos}>
-                    <Text style={styles.totalizaCasosText}> Seja bem-vindo a Ong Test!</Text>
+    <Text style={styles.totalizaCasosText}> Seja bem-vindo a {fantasyName}</Text>
                 </View>
 
                 <View style={styles.totalizaCasos}>
-                    <Text style={styles.totalizaCasosText}> Existem 0 casos ativos! </Text>
+    <Text style={styles.totalizaCasosText}> Existem {total} casos ativos! </Text>
                 </View>
 
             </View>

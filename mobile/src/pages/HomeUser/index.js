@@ -22,7 +22,7 @@ export default function HomeUser() {
     const KEY_CD_USER = 'KEY_CD_USER';
     const [incidents, setIncidents] = useState([]);
     const [total, setTotal] = useState(0);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(0);
     const [load, setLoad] = useState(false);
     const userName = route.params.userName;
     const isOwnOng = route.params.ownOng;

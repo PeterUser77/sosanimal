@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -63,8 +64,9 @@ public class IncidentServiceImpl implements IncidentService {
     @Override
     public ResponseEntity<Page<Incident>> findAll(Integer page) {
         long total = incidentRepository.count();
+
         return ResponseEntity.ok().header("X-total-count", String.valueOf(total))
-                .body((total == 0) ? Page.empty() : incidentRepository.findAll(
+                .body((total == 0) ? Page.empty() : incidentRepository.findAllFetchOng(
                         PageRequest.of(
                         page,
                         pageSize)));

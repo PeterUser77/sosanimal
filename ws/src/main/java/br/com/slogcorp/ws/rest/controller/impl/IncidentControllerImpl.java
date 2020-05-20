@@ -40,7 +40,7 @@ public class IncidentControllerImpl implements IncidentController {
 
     @Override
     @GetMapping("/markIncidentAsCanceled")
-    public void markIncidentAsCanceled(@RequestParam  Integer cdIncident) throws Exception {
+    public void markIncidentAsCanceled(@RequestParam Integer cdIncident) throws Exception {
         incidentService.updateStatusIncident(cdIncident, CANCELED.getCdStatus());
     }
 

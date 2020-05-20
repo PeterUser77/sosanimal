@@ -101,11 +101,11 @@ export default function Home() {
     }
 
     async function markIncidentAsCanceled(cdIncident){
-        await Api.get('incident/markIncidentAsCanceled?cdIncident=' + cdIncident);
+        await Api.get('incident/markIncidentAsCanceled?cdIncident='+cdIncident);
     }
 
     async function markIncidentAsCompleted(cdIncident){
-        await Api.get('incident/markIncidentAsCompleted?cdIncident=' + cdIncident);
+        await Api.get('incident/markIncidentAsCompleted?cdIncident='+cdIncident);
     }
 
     
@@ -162,7 +162,7 @@ export default function Home() {
 
                                 <TouchableOpacity
                                     style={styles.botaoEnd}
-                                    onPress={() => canceled()}>
+                                    onPress={() => canceled(incident.cdIncident)}>
                                     <Text style={styles.botaoText}> Cancelar </Text>
                                 </TouchableOpacity>
                             </View>

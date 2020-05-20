@@ -1,51 +1,79 @@
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import React, { useRef, useState } from 'react';
-import { Text, TouchableOpacity, View, AsyncStorage, Alert } from 'react-native';
+import { Alert, AsyncStorage, Text, TouchableOpacity, View } from 'react-native';
 import Input from '../../components/Form/Input';
 import TextInputArea from '../../components/Form/TextInputArea';
 import global from '../../global';
-import styles from './styles';
-import { useNavigation } from '@react-navigation/native';
 import Api from '../../service/Api';
+import styles from './styles';
 
 export default function RegisterIncident() {
     const navigation = useNavigation();
+    const [isEditable, setIsEditable] = useState(false);
     const KEY_CD_ONG = 'KEY_CD_ONG';
-
-    const formRegisterIncident = useRef(null);
+    const route = useRoute();
+    const incident = route.params;
+    const formRegisterIncident = useRef();
 
     function navigateToHomeIncident() {
-        navigation.navigate('OngIncidents')
+        navigation.goBack();
+    }
+
+    function loadData() {
+        if (typeof incident !== "undefined") {
+            console.log(incident.title);
+            console.log(incident.description);
+            console.log(incident.value);
+            formRegisterIncident.current.setFieldValue('title', incident.title);
+            formRegisterIncident.current.setFieldValue('description', incident.description);
+            formRegisterIncident.current.setFieldValue('value', incident.value);
+            setIsEditable(true);
+        }else{
+            null;
+        }
     }
 
     async function handleSubmit(data) {
 
-        const cdOng = await AsyncStorage.getItem(KEY_CD_ONG);
+        if (isEditable) {
+            await Api.post('incident/edit', data)
+                .then(() => {
+                    Alert.alert("Sucesso", "Caso editado com sucesso!", [
+                        { text: "OK", onPress: () => navigateToHomeIncident() }
+                    ], { cancelable: false });
+                }).catch(err => {
+                    Alert.alert("Erro", "Ocorreu um erro ao tentar o caso!", [
+                        { text: "OK", onPress: () => { } }
+                    ], { cancelable: false });
+                })
+        } else {
+            const cdOng = await AsyncStorage.getItem(KEY_CD_ONG);
 
-        await Api.put('incident/new', {
-            "incident": {
-                "title": data.title,
-                "description": data.description,
-                "value": data.value
-            },
-            "cdOng": cdOng
-        }).then(() => {
-            Alert.alert("Sucesso", "Caso cadastrado com sucesso!", [
-                { text: "OK", onPress: () => navigateToHomeIncident() }
-            ], { cancelable: false });
-
-        }).catch(err => {
-            if (err.response.data.message) {
-                Alert.alert("Erro", err.response.data.message, [
-                    { text: "OK", onPress: () => { } }
+            await Api.put('incident/new', {
+                "incident": {
+                    "title": data.title,
+                    "description": data.description,
+                    "value": data.value
+                },
+                "cdOng": cdOng
+            }).then(() => {
+                Alert.alert("Sucesso", "Caso cadastrado com sucesso!", [
+                    { text: "OK", onPress: () => navigateToHomeIncident() }
                 ], { cancelable: false });
-            } else {
-                Alert.alert("Erro", "Ocorreu um erro ao tentar cadastrar o caso, tente novamente! Se o problema persistir contacte o administrador do sistema.", [
-                    { text: "OK", onPress: () => { } }
-                ], { cancelable: false });
-            }
-        });
 
+            }).catch(err => {
+                if (err.response.data.message) {
+                    Alert.alert("Erro", err.response.data.message, [
+                        { text: "OK", onPress: () => { } }
+                    ], { cancelable: false });
+                } else {
+                    Alert.alert("Erro", "Ocorreu um erro ao tentar cadastrar o caso, tente novamente! Se o problema persistir contacte o administrador do sistema.", [
+                        { text: "OK", onPress: () => { } }
+                    ], { cancelable: false });
+                }
+            });
+        }
     };
 
     return (
@@ -55,14 +83,16 @@ export default function RegisterIncident() {
             <View style={styles.header}>
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToHomeOng()}>
+                    onPress={() => navigateToHomeIncident()}>
                     <Text style={global.textButton}> Voltar </Text>
                 </TouchableOpacity>
             </View>
 
-                <Text style={styles.title}>Cadastro de Caso</Text>
+            <Text style={styles.title}>Cadastro de Caso</Text>
 
-            <Form ref={formRegisterIncident} onSubmit={handleSubmit}>
+            <Form ref={formRegisterIncident}
+                onSubmit={handleSubmit}>
+
 
                 <View style={styles.description}>
 

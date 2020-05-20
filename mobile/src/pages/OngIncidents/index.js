@@ -31,7 +31,7 @@ export default function Home() {
     function navigateToHomeOng() {
         navigation.navigate('HomeOng', { "total": total });
     }
-    
+
     async function loadIncidents() {
         if (load) {
             return;

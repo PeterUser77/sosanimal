@@ -1,49 +1,25 @@
 import { StyleSheet } from 'react-native';
-import { Platform } from 'react-native';
-import { KeyboardAvoidingView } from 'react-native';
-import Constants from 'expo-constants';
 
 
 
 export default StyleSheet.create({
     
-    container: {
-        flex: 1,
-    },
-    header:{
-        alignItems: 'center',
-        backgroundColor: '#E5ECE8',
-        flexDirection:'row',
-        
-    },
+  
+  
     botao: {
         flex: 1,
         height: 50,
         backgroundColor: '#FF8C00',
-        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
     },
     botaoText: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         color: '#ffff',
     },
 
-    totalIncidents:{
-        padding: 10,
-        width:'100%',
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderColor: "#C9C9C3",
-    },
-
-    totalIncidentsText:{
-        fontSize: 16,
-        fontWeight: 'bold',
-       
-    }, 
+   
     incidentsList:{
         flex: 1, 
     }, 

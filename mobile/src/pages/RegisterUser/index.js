@@ -1,24 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import {
     View,
     Text,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import Input from '../../components/Form/Input';
-import Crypto from '../../secure/Crypto';
-import MyDatePicker from '../../components/Form/MyDatePicker';
-
 
 import global from '../../global';
 import styles from './styles';
 
 import { Form } from '@unform/mobile';
 import { Scope } from '@unform/core';
-
-import Api from '../../service/Api';
 
 
 export default function Register() {
@@ -116,16 +111,13 @@ export default function Register() {
                 </View>
 
                 <Form ref={formRegister} onSubmit={handleSubmit}>
-
                     <View style={global.container}>
-
                         <Input
                             style={global.input}
                             name="firstName"
                             placeholder="Nome"
                             autoCorrect={false}
                         />
-
                         <Input
                             style={global.input}
                             name="lastName"
@@ -151,7 +143,6 @@ export default function Register() {
                             autoCorrect={false}
                             secureTextEntry={true}
                         />
-
                         <Input
                             style={global.input}
                             name="phone"
@@ -252,6 +243,6 @@ export default function Register() {
 
                 </Form>
             </ScrollView>
-        </View >
+        </View>
     );
 }

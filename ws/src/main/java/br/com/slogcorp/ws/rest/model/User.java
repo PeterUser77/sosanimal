@@ -13,7 +13,11 @@ import java.util.Date;
 
 @Entity
 @Getter
+<<<<<<< HEAD
 @Table(schema = "SOSANIMAL", name = "USER")
+=======
+@Table(schema = "MYDB", name = "USER")
+>>>>>>> feature/front-end
 public class User {
 
     @Id
@@ -21,7 +25,13 @@ public class User {
     @Column(name = "ID_USER")
     private Integer cdUser;
 
+<<<<<<< HEAD
     @NotBlank
+=======
+    @Column(name = "LOGIN")
+    private String login;
+
+>>>>>>> feature/front-end
     @Setter
     @Column(name = "PASSWORD")
     private String password;
@@ -40,7 +50,7 @@ public class User {
     private Date birthDate;
 
     @Email
-    @Column(name = "EMAIL")
+    @Column(name = "MAIL")
     private String email;
 
     @Size(max = 14)
@@ -58,7 +68,13 @@ public class User {
     private String token;
 
     @Setter
+<<<<<<< HEAD
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CD_ADRESS", referencedColumnName = "ID_ADDRESS")
     private Address address;
+=======
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "CD_ADRESS", referencedColumnName = "ID_ADRESS")
+    private Adress adress;
+>>>>>>> feature/front-end
 }

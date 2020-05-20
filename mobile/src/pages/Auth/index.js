@@ -13,10 +13,8 @@ import {
 } from 'react-native';
 import Input from '../../components/Form/Input';
 import Crypto from '../../secure/Crypto';
-
 import styles from './styles';
 import global from '../../global';
-
 import Api from '../../service/Api';
 
 

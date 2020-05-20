@@ -3,7 +3,7 @@ package br.com.slogcorp.ws.rest.service.impl;
 import br.com.slogcorp.ws.rest.exception.UserException;
 import br.com.slogcorp.ws.rest.model.User;
 import br.com.slogcorp.ws.rest.repository.UserRepository;
-import br.com.slogcorp.ws.rest.service.AddressService;
+import br.com.slogcorp.ws.rest.service.AdressService;
 import br.com.slogcorp.ws.rest.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +17,34 @@ import static br.com.slogcorp.ws.rest.util.EmailUtils.isValidEmailAddress;
 @Service
 public class UserServiceImpl implements UserService {
 
+<<<<<<< HEAD
     private final AddressService addressService;
     private final UserRepository userRepository;
 
     public UserServiceImpl(final AddressService addressService,
                            final UserRepository userRepository) {
         this.addressService = addressService;
+=======
+    private AdressService adressService;
+    private UserRepository userRepository;
+
+    public UserServiceImpl(AdressService adressService,
+                           UserRepository userRepository) {
+        this.adressService = adressService;
+>>>>>>> feature/front-end
         this.userRepository = userRepository;
     }
 
     @Override
     public void create(User user) throws UserException{
         isValidUser(user);
+<<<<<<< HEAD
         user.setAddress(addressService.save(user.getAddress()));
         user.setPassword(user.getPassword());
+=======
+        user.setAdress(adressService.findOrSave(user.getAdress()));
+        user.setPassword(getEncryptoPassword(user.getPassword()));
+>>>>>>> feature/front-end
         userRepository.save(user);
     }
 

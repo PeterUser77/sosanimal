@@ -3,10 +3,9 @@ import React, {
     useRef,
     useState,
   } from 'react';
-  import { TextInput } from 'react-native';
   import { useField } from '@unform/core';
-
-  function Input({ name, ...rest }) {
+  import Textarea from 'react-native-textarea';
+  function TextInputArea({ name, ...rest }) {
 
     const inputRef = useRef(null);
     const { fieldName, registerField, defaultValue, error } = useField(name);
@@ -36,7 +35,7 @@ import React, {
 
 
     return (
-      <TextInput
+      <Textarea
         ref={inputRef}
         keyboardAppearance="dark"
         defaultValue={defaultValue}
@@ -51,4 +50,4 @@ import React, {
     );
   };
 
-  export default Input;
+  export default TextInputArea;

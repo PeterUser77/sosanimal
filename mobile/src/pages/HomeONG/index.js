@@ -28,9 +28,14 @@ export default function HomeOng() {
         navigation.navigate('OngProfile');
     }
 
+    function navigateToONG(){
+        navigation.navigate('ONG');
+    }
+   
+   
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
+        <View style={global.containerMenu}>
+            <View style={global.header}>
                 <TouchableOpacity
                     style={global.menuButton}
                     onPress={() => navigateToRegisterOngIncident()}>

@@ -56,7 +56,7 @@ export default StyleSheet.create({
         fontSize: 16,
         borderRadius: 10,
         fontWeight: 'bold',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#FFFF',
     },
 
     // Button padrão grande, arredondado
@@ -94,13 +94,42 @@ export default StyleSheet.create({
     textButton: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: '#FFFF',
+    },
+    botaoHome: {
+        flex: 1,
+        height: 50,
+        backgroundColor: '#FF8C00',
+        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+   
+    },
+    header:{
+       
+        alignItems: 'center',
+        backgroundColor: '#FF8C00',
+        flexDirection:'row',
+        
+    },
+     
+    containerMenu: {
+        flex: 1, 
+  
     },
 
-    // Texto do Button Birth Date
-    textButtonBirthDate: {
-        marginTop: 5,
-        fontSize: 16,
+   totalizaCasos:{
+        borderRadius:10,
+        padding: 10,
+        width:'100%',
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: "#C9C9C3",
+    },
+
+    totalizaCasosText:{
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#C3C3C3',
     },
@@ -112,5 +141,8 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     }
+       
+    
+   
 
 });

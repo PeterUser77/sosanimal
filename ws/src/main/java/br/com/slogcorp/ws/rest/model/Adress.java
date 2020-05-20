@@ -12,30 +12,34 @@ import javax.persistence.Table;
 
 @Entity
 @Getter
-@Table(schema = "SOSANIMAL", name = "ADDRESS")
-public class Address {
+@Table(schema = "MYDB", name = "ADRESS")
+public class Adress {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ADDRESS")
+    @Column(name = "ID_ADRESS")
     private Integer cdAdress;
 
     @Setter
-    @Column(name = "PUBLIC_PLACE")
-    private String publicPlace;
+    @Column(name = "CEP")
+    private Integer cep;
+
+    @Setter
+    @Column(name = "STREET")
+    private String street;
+
+    @Column(name = "NUMBER")
+    private Integer number;
 
     @Column(name = "COMPLEMENT")
     private String complement;
-
-    @Setter
-    @Column(name = "NEIGHBORHOOD")
-    private String neighborhood;
 
     @Setter
     @Column(name = "CITY")
     private String city;
 
     @Setter
+<<<<<<< HEAD:ws/src/main/java/br/com/slogcorp/ws/rest/model/Address.java
     @Column(name = "STATE")
     private String state;
 
@@ -43,4 +47,9 @@ public class Address {
     @Column(name = "CEP")
     private String cep;
 
+=======
+    @Column(name = "DISTRICT")
+    private String district;
+
+>>>>>>> feature/front-end:ws/src/main/java/br/com/slogcorp/ws/rest/model/Adress.java
 }

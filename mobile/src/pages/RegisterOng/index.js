@@ -11,7 +11,7 @@ import Input from '../../components/Form/Input';
 
 import global from '../../global';
 import styles from './styles';
-
+import { mask, unMask } from 'remask';
 import { Form } from '@unform/mobile';
 import { Scope } from '@unform/core';
 
@@ -20,8 +20,21 @@ import { Scope } from '@unform/core';
 export default function RegisterOng() {
 
     const navigation = useNavigation();
-    const formRegisterOng = useRef(null);
 
+    const formRegisterOng = useRef(null);
+//
+const [valueCEP, setValueCEP] = useState("");
+const onChangeCEP = ev => {
+  const originalValue = unMask(ev.target.value)
+  const maskedValue = mask(originalValue,
+    [
+      '99.999-999',
+    ]);
+    setValueCEP(maskedValue);
+
+};
+//
+  
     function handleSubmit(data) {
         console.log(data);
     }
@@ -57,8 +70,15 @@ export default function RegisterOng() {
                             />
                             <Input
                                 style={global.input}
-                                name="phone"
-                                placeholder="Telefone"
+                                name="Phone"
+                                placeholder="Telefone 1"
+                                keyboardType="number-pad"
+                                autoCorrect={false}
+                            />
+                            <Input
+                                style={global.input}
+                                name="otherPhone"
+                                placeholder="Telefone 2"
                                 keyboardType="number-pad"
                                 autoCorrect={false}
                             />

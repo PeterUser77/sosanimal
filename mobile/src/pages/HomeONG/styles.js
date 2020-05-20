@@ -23,7 +23,7 @@ export default StyleSheet.create({
     },
     
     botaoText: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         color: '#ffff',
     },

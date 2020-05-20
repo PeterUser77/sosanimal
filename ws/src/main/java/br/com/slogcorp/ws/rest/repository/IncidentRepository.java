@@ -21,6 +21,6 @@ public interface IncidentRepository extends JpaRepository<Incident, Integer> {
     @Query("UPDATE Incident i SET i.status =?2 WHERE i.cdIncident =?1")
     void updateStatusByCdIncident(Integer cdIncident, Integer cdStatus);
 
-//    @Query("SELECT i FROM Incident i LEFT JOIN FETCH i.ong ORDER BY i.cdIncident")
-//    Page<Incident> findAllFetchOng(Pageable pageable);
+    @Query("SELECT i FROM Incident i JOIN i.ong ORDER BY i.cdIncident")
+    Page<Incident> findAllFetchOng(Pageable pageable);
 }

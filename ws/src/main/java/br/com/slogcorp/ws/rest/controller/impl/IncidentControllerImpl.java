@@ -1,16 +1,14 @@
 package br.com.slogcorp.ws.rest.controller.impl;
 
 import br.com.slogcorp.ws.rest.controller.IncidentController;
+import br.com.slogcorp.ws.rest.dto.RegisterIncidentDTO;
 import br.com.slogcorp.ws.rest.enums.StatusEnum;
 import br.com.slogcorp.ws.rest.model.Incident;
 import br.com.slogcorp.ws.rest.service.IncidentService;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static br.com.slogcorp.ws.rest.enums.StatusEnum.*;
 
@@ -33,5 +31,11 @@ public class IncidentControllerImpl implements IncidentController {
                                                               defaultValue = "0") Integer page) {
 
         return incidentService.findByCdOngAndCdStatus(cdOng, IN_PROGRESS.getCdStatus(), page);
+    }
+
+    @Override
+    @PutMapping("/new")
+    public void create(@RequestBody RegisterIncidentDTO registerIncidentDTO) throws Exception {
+        incidentService.create(registerIncidentDTO.getIncident(), registerIncidentDTO.getCdOng());
     }
 }

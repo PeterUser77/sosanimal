@@ -2,12 +2,17 @@ package br.com.slogcorp.ws.rest.service.impl;
 
 import br.com.slogcorp.ws.rest.enums.StatusEnum;
 import br.com.slogcorp.ws.rest.model.Incident;
+import br.com.slogcorp.ws.rest.model.Ong;
+import br.com.slogcorp.ws.rest.model.Status;
 import br.com.slogcorp.ws.rest.repository.IncidentRepository;
 import br.com.slogcorp.ws.rest.service.IncidentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import static br.com.slogcorp.ws.rest.enums.StatusEnum.*;
 
 @Service
 public class IncidentServiceImpl implements IncidentService {
@@ -33,5 +38,17 @@ public class IncidentServiceImpl implements IncidentService {
                         page,
                         pageSize
                 )));
+    }
+
+    @Override
+    @Transactional
+    public void create(Incident incident, Integer cdOng) throws Exception {
+        try {
+            incident.setOng(new Ong(cdOng));
+            incident.setStatus(new Status(IN_PROGRESS.getCdStatus()));
+            incidentRepository.save(incident);
+        }catch (Exception ex){
+            throw new Exception("Ocorreu um erro ao tentar cadastrar o caso!");
+        }
     }
 }

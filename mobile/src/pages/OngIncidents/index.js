@@ -44,7 +44,6 @@ export default function Home() {
         const cdOng = await AsyncStorage.getItem(KEY_CD_ONG);
 
         setLoad(true);
-        console.log(cdOng);
         const response = await Api.get('incident/findInProgressByCdOng?cdOng='+ cdOng, {
             params: {page}
         });
@@ -86,7 +85,7 @@ export default function Home() {
             <View style={styles.incidentsList}>
                 <FlatList
                     data={incidents}
-                    keyExtractor={incident => String(incident.id)}
+                    keyExtractor={incident => String(incident.cdIncident)}
                     showsVerticalScrollIndicator={false}
                     onEndReached={loadIncidents}
                     onEndReachedThreshold={0.5}

@@ -1,14 +1,20 @@
 package br.com.slogcorp.ws.rest.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(schema = "SOSANIMAL", name = "ONG")
 public class Ong {
+
+    public Ong(Integer cdOng) {
+    this.cdOng = cdOng;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

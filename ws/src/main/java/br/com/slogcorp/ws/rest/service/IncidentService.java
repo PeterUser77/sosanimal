@@ -9,4 +9,7 @@ public interface IncidentService {
     Integer count(Integer cdOng);
 
     ResponseEntity<Page<Incident>> findByCdOngAndCdStatus(Integer cdOng, Integer cdStatus, Integer page);
+
+    void create(Incident incident, Integer cdOng) throws Exception;
+
 }

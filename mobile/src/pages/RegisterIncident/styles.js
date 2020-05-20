@@ -31,10 +31,12 @@ export default StyleSheet.create({
         color: '#ffff',
     },
 
-    title : {
-        padding: 10,
-        marginLeft: 10,
-    },
+    title: {
+        paddingBottom: 0,
+        fontWeight: 'bold',
+        fontSize: 30,
+        color: '#696969',
+      },
     
     titletext: {
         fontSize: 20,  

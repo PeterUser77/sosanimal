@@ -50,7 +50,9 @@ export default StyleSheet.create({
     }, 
 
     incidentsList:{
-        flex: 1, 
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     }, 
 
     incident:{

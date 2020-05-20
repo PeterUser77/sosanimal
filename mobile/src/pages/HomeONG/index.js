@@ -25,8 +25,8 @@ export default function HomeOng() {
         navigation.navigate('HomeUser');
     }
 
-    function navigateToOngProfile() {
-        navigation.navigate('OngProfile');
+    function navigateToProfileOng() {
+        navigation.navigate('ProfileOng');
     }
 
     return (
@@ -40,7 +40,7 @@ export default function HomeOng() {
 
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToOngProfile()}>
+                    onPress={() => navigateToProfileOng()}>
                     <Text style={styles.botaoText}> Perfil </Text>
                 </TouchableOpacity>
 

@@ -53,10 +53,6 @@ export default function HomeUser() {
         loadIncidents();
     }, []);
 
-    function navigateToDetail() {
-        navigation.navigate('Detail');
-    }
-
     async function navigateToHomeOng() {
 
         if (isOwnOng) {
@@ -77,9 +73,13 @@ export default function HomeUser() {
         navigation.navigate('Auth');
     }
 
-    // function navigateToUserProfile() {
-    //     navigation.navigate('UserProfile');
-    // }
+    function navigateToDetail() {
+        navigation.navigate('Detail');
+    }
+
+    function navigateToProfileUser() {
+        navigation.navigate('ProfileUser');
+    }
 
     return (
         <View style={styles.container}>
@@ -93,7 +93,7 @@ export default function HomeUser() {
 
                 <TouchableOpacity
                     style={global.menuButton}
-                    onPress={() => navigateToUserProfile()}>
+                    onPress={() => navigateToProfileUser()}>
                     <Text style={global.textButton}> Perfil </Text>
                 </TouchableOpacity>
 

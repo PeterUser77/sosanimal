@@ -75,7 +75,6 @@ export default function Home() {
                     <Text style={styles.botaoText}> Voltar </Text>
                 </TouchableOpacity>
 
-
             </View>
 
             <View style={styles.totalIncidents}>

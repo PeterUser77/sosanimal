@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 public interface OngService {
-    void create(Ong ong, Integer cdUser) throws OngException;
+    ResponseEntity<Ong> create(Ong ong, Integer cdUser) throws OngException;
 
     Optional<Ong> findByCdUser(Integer cdUser);
 

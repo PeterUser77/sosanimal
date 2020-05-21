@@ -38,7 +38,6 @@ public class Ong {
     private String phone;
 
     @Setter
-    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "CD_ADRESS", referencedColumnName = "ID_ADDRESS")
     private Address address;

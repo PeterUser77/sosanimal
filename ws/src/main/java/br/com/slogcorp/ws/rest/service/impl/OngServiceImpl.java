@@ -34,12 +34,13 @@ public class OngServiceImpl implements OngService {
     }
 
     @Override
-    public void create(Ong ong, Integer cdUser) throws OngException {
+    public ResponseEntity<Ong> create(Ong ong, Integer cdUser) throws OngException {
         validateOng(ong);
         Address address = addressService.save(ong.getAddress());
         ong.setUser(new User(cdUser));
         ong.setAddress(address);
-        ongRepository.save(ong);
+        Ong ongTemp = ongRepository.save(ong);
+        return ResponseEntity.ok(ongTemp);
     }
 
     @Override

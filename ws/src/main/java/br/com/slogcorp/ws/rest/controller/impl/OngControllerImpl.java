@@ -24,8 +24,8 @@ public class OngControllerImpl implements OngController {
 
     @Override
     @PutMapping("/create")
-    public void create(@RequestBody OngDTO ong) throws OngException {
-        ongService.create(ong.getOng(), ong.getCdUser());
+    public ResponseEntity<Ong> create(@RequestBody OngDTO ong) throws OngException {
+      return ongService.create(ong.getOng(), ong.getCdUser());
     }
 
     @Override

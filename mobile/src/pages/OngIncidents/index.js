@@ -139,7 +139,7 @@ export default function Home() {
                     keyExtractor={incident => String(incident.cdIncident)}
                     showsVerticalScrollIndicator={false}
                     onEndReached={loadIncidents}
-                    onEndReachedThreshold={0.5}
+                    onEndReachedThreshold={0.1}
                     renderItem={({ item: incident }) => (
                         <View style={styles.incident}>
                             <Text style={styles.incidentProperty}>Titulo:</Text>

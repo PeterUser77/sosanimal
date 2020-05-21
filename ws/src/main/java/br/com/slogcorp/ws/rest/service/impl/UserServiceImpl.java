@@ -32,7 +32,6 @@ public class UserServiceImpl implements UserService {
     public void create(User user) throws UserException{
         validateUser(user);
         user.setAddress(addressService.save(user.getAddress()));
-        user.setPassword(user.getPassword());
         userRepository.save(user);
     }
 
@@ -61,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findByEmailAndPassword(String email, String password) {
-        return userRepository.findByEmailAndPassword(email, getEncryptoPassword(password));
+        return userRepository.findByEmailAndPassword(email, password);
     }
 
     @Override
